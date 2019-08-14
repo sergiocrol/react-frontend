@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import withAuth from './withAuth.js';
 
 class Navbar extends Component {
-  render() {  
+  state = {
+    lang: 'en'
+  }
+
+  handleChange = (el) => {
+    this.setState({
+      lang: el.target.innerHTML
+    })
+    this.props.language(el.target.innerHTML)
+  }
+
+  render() {
     return (
-      <div>
-        {this.props.isLoggedIn ? (
-          <>
-            <p>username: {this.props.user.username}</p>
-            <p onClick={this.props.logout}>Logout</p>
-          </>
-        ) : (
-          <>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Signup</Link>
-          </>
-        )}
-      </div>
+      <nav>
+        <p>logo</p>
+        <ul>
+          <li><a href="#0" onClick={this.handleChange} value="en">en</a></li>
+          <li><a href="#0" onClick={this.handleChange} value="sp">sp</a></li>
+        </ul>
+      </nav>
     )
   }
 }
 
-export default withAuth(Navbar);
+export default Navbar;

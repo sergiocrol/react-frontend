@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
 
+
 class Login extends Component {
   state = {
     username: '',
@@ -13,15 +14,15 @@ class Login extends Component {
     const { username, password } = this.state
 
     this.props.login({ username, password })
-    .then( (user) => {
-      console.log(user)
-    })
-    .catch( error => console.log(error) )
+      .then((user) => {
+        console.log(user)
+      })
+      .catch(error => console.log(error))
   }
 
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -30,7 +31,7 @@ class Login extends Component {
       <>
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='username' >Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
+          <input id='username' type='text' name='username' value={username} onChange={this.handleChange} />
           <label htmlFor='password'>Password:</label>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
