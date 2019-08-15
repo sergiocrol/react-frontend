@@ -100,6 +100,114 @@ body {
   flex-direction: column;
 }
 
+.input {
+  width: 50vw;
+  height: 2em;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.384);
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.616);
+  font-weight: 900;
+  text-align: center;
+}
+.input:hover {
+  width: 55vw;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.616);
+  font-size: 2rem;
+}
+
+.input-icons {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 45rem;
+  margin-top: 6rem;
+}
+.input-icons img {
+  margin-left: 4rem;
+  margin-top: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+}
+.input-icons .input-no-line {
+  width: 20rem;
+  height: 2em;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.616);
+  font-weight: 900;
+  padding-left: 1.5rem;
+}
+.input-icons .input-no-line::placeholder {
+  color: rgba(255, 255, 255, 0.616);
+  font-size: 2rem;
+}
+.input-icons .input-no-line :hover .tag {
+  transform: translateX(5px);
+}
+
+#input-birthday {
+  font-size: 2.2rem;
+  padding-left: 1.5rem;
+  width: 20rem;
+}
+
+.input-birthday {
+  margin-top: 3rem;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.selector {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  color: rgba(255, 255, 255, 0.616);
+  font-size: 2.2rem;
+  width: 20rem;
+  padding-left: 1.5rem;
+}
+.selector option {
+  background-color: transparent;
+  color: #F2627A;
+}
+
+.tag {
+  height: 3.5rem;
+  width: 8rem;
+  border-radius: 1rem 0 0 1rem;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.616);
+  text-align: center;
+  line-height: 3.5rem;
+  color: #F2627A;
+  font-weight: 700;
+  z-index: 1;
+  display: inline-block;
+}
+.tag:before {
+  content: "";
+  position: absolute;
+  right: -1.79rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  transform-origin: top left;
+  background-color: rgba(255, 255, 255, 0.616);
+  border-radius: 1px;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
+}
+
 .container {
   width: 100%;
   text-align: center;
@@ -108,16 +216,16 @@ body {
 
 .profile-image-container, .profile-image-loading {
   background-color: #fff;
-  width: 30rem;
-  height: 30rem;
+  width: 25rem;
+  height: 25rem;
   position: relative;
   cursor: pointer;
   margin: 0 auto;
   clip-path: circle(50% at 50% 50%);
 }
 .profile-image-container div, .profile-image-loading div {
-  width: 30rem;
-  height: 30rem;
+  width: 25rem;
+  height: 25rem;
   transition: all 0.2s linear;
   clip-path: circle(50% at 50% 50%);
   background-size: cover;
@@ -141,7 +249,7 @@ body {
   width: 5rem;
   opacity: 0;
   top: 45%;
-  right: 45%;
+  right: 40%;
 }
 
 .profile-image-loading div {
@@ -162,7 +270,7 @@ body {
   width: 100;
   font-size: 5rem;
   font-weight: 900;
-  color: #ff5e61b6;
+  color: #F2627A;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -170,11 +278,11 @@ body {
 }
 
 .profile-creation {
-  background: #ff9966;
+  background: #F17834;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ff9966, #ff5e62);
+  background: -webkit-linear-gradient(to right, #F17834, #F2627A);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #ff9966, #ff5e62);
+  background: linear-gradient(to top, #F17834, #F2627A);
   height: 100vh;
 }
 

@@ -1,0 +1,117 @@
+.input {
+  width: 50vw;
+  height: 2em;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.384);
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.616);
+  font-weight: 900;
+  text-align: center;
+  
+  &:hover{
+    width: 55vw;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.616);
+    font-size: 2rem;
+  }
+}
+
+
+.input-icons {
+  position: relative;
+  //margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 45rem;
+  margin-top: 6rem;
+
+  img {
+    margin-left: 4rem;
+    margin-top: .5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+  }
+  .input-no-line {
+    width: 20rem;
+    height: 2em;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.616);
+    font-weight: 900;
+    padding-left: 1.5rem;
+            
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.616);
+      font-size: 2rem;
+    }
+
+    :hover .tag{
+      transform: translateX(5px);
+    }
+  }
+}
+
+#input-birthday {
+  font-size: 2.2rem;
+  padding-left: 1.5rem;
+  width: 20rem;
+}
+
+.input-birthday {
+  margin-top: 3rem;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+
+}
+
+.selector {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  color: rgba(255, 255, 255, 0.616);
+  font-size: 2.2rem;
+  width: 20rem;
+  padding-left: 1.5rem;
+
+  option{
+    background-color: transparent;
+    color: $color-coral-two;
+  }
+}
+
+.tag {
+  height: 3.5rem;
+  width: 8rem;
+  border-radius: 1rem 0 0 1rem;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.616);
+  text-align: center;
+  line-height: 3.5rem;
+  color: $color-coral-two;
+  font-weight: 700;
+  z-index: 1;
+  display: inline-block;
+
+  &:before {
+    content: "";
+    position: absolute;
+    right: -1.79rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    transform-origin: top left;
+    background-color: rgba(255, 255, 255, 0.616);
+    border-radius: 1px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
+  }
+}

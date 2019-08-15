@@ -1,46 +1,58 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
 import cloudImage from '../images/cloud.svg';
+import location from '../images/location.svg';
+import cake from '../images/cake.svg';
+import profile from '../images/profile.svg';
 import firebase from "firebase";
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
+const gender = require('../helpers/gender');
 
 class Profile extends Component {
   state = {
     isUploading: false,
     progress: 0,
-    profileImage: this.props.user.profileImage
+    profileImage: this.props.user.profileImage,
+    name: this.props.user.name,
+    location: "",
+    age: "Birthday"
   };
-
+  
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
-
+  
   handleProgress = progress => {
     const newProgress = progress < 100 && progress + 1;
     this.setState({ progress: newProgress, isUploading: true });
   }
-
+  
   handleUploadError = error => {
     this.setState({ isUploading: false });
     console.error(error);
   };
-
+  
   handleUploadSuccess = filename => {
     this.setState({ progress: 100, isUploading: false });
     firebase
-      .storage()
-      .ref("images")
-      .child(filename)
-      .getDownloadURL()
-      .then(url => {
-        this.setState({ profileImage: url })
-      });
+    .storage()
+    .ref("images")
+    .child(filename)
+    .getDownloadURL()
+    .then(url => {
+      this.setState({ profileImage: url })
+    });
   };
+  
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
 
   render() {
     const { isUploading, progress, profileImage } = this.state;
     const user = this.props.user;
 
     return (
-      <div className="container profile-creation">
+      <form className="container profile-creation" autoComplete="off">
         <div className="profile-creation-textbox">
           <h1>Welcome {user.name}</h1>
           <p>tell us about you :)</p>
@@ -66,12 +78,34 @@ class Profile extends Component {
                 <div style={{ backgroundImage: `url(${this.state.profileImage})` }}></div>
                 <p>{progress}</p>
               </div>
-
             )
           }
         </CustomUploadButton>
-
-      </div>
+        <input className="input" type="text" name="name" value={this.state.name} onChange={this.handleChange} />
+        <div className="input-icons">
+        <div className="tag">
+          location
+          </div>
+          <img src={location} alt="location" />
+          <input className="input-no-line" type="text" name="location" value={this.state.location} onChange={this.handleChange} placeholder="e.g. Barcelona" />
+        </div>
+        <div className="input-icons input-birthday">
+        <div className="tag">
+          birthday
+          </div>
+          <img src={cake} alt="location" />
+          <input id="input-birthday" className="input-no-line" type="date" name="age" value={this.state.age} onChange={this.handleChange} placeholder="Birthdate" required="required"/>
+        </div>
+        <div className="input-icons input-birthday">
+        <div className="tag">
+          gender
+        </div>
+          <img src={profile} alt="location" />
+        <select className="selector">
+          {gender.map((gen,i) => { return <option key={i}>{gen}</option> })}
+        </select>
+        </div>
+      </form>
     )
   }
 }
