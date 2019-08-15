@@ -9,7 +9,12 @@
 
 @import "components/button";
 @import "components/drop";
+@import "components/form";
 
 @import "layout/header";
+@import "layout/container";
+@import "layout/navbar";
 
 @import "pages/home";
+@import "pages/welcome";
+@import "pages/profile";
