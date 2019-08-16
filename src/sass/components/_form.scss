@@ -1,4 +1,33 @@
+
+// Profile creation form
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.card-fading {
+  animation: moveInLeft 1000ms;
+}
+
+// Login form
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
 }

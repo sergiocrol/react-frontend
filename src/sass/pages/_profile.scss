@@ -43,8 +43,8 @@
 .profile-image-loading {
 
   div{
-    width: 30rem;
-    height: 30rem;
+    width: 25rem;
+    height: 25rem;
     clip-path: circle(50% at 50% 50%);
     background-size: cover;
     display: flex;
@@ -74,6 +74,11 @@
   background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, $color-orange-two, $color-coral-two);
   height: 100vh;
+}
+
+.profile-container {
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .profile-creation-textbox{

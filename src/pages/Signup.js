@@ -15,9 +15,10 @@ class Signup extends Component {
     event.preventDefault();
     const name = this.state.name;
     const password = this.state.password;
+    const rePassword = this.state.rePassword;
     const email = this.state.email;
 
-    this.props.signup({ name, password, email })
+    this.props.signup({ name, password, email, rePassword })
       .then((user) => {
         this.setState({
           name: '',
