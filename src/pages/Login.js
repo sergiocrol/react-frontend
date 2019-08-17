@@ -59,7 +59,7 @@ class Login extends Component {
                 <form className="login-form" onSubmit={handleSubmit}>
                   <label htmlFor='email' >email:</label>
                   <input id='email' type='text' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur}
-                    className={errors.email && touched.email && "error"} autoFocus />
+                    className={errors.email && touched.email && "error"} />
                   {errors.email && touched.email && (
                     <div className="input-feedback">{errors.email}</div>
                   )}

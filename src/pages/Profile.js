@@ -125,7 +125,7 @@ class Profile extends Component {
             </div>
           </form>
           <a className="btn-text" href="#0" onClick={this.nextPage}>NEXT&rarr;</a>
-          <a onClick={this.handleLogout}>Logout</a>
+          <a href="#0" onClick={this.handleLogout}>Logout</a>
         </div>
       </div >
     )
