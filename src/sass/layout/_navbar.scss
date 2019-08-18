@@ -1,0 +1,17 @@
+.navbar-container {
+  width: 100vw;
+  height: 5.5rem;
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid grey;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  img {
+    height: 4rem;
+    width: 4rem;
+  }
+}

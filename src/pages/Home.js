@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
+import Header from '../components/Header.jsx';
 
-const Home = () => {
-  return (
-    <div>
-      <Navbar />
-      <h1>Home</h1>
-    </div>
-  )
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className="home-search-container">
+          <div className="triangle"></div>
+        </div>
+        <Navbar />
+      </div >
+    )
+  }
 }
 
-export default Home;
+export default withAuth(Home);

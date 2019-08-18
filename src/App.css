@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 @keyframes moveInLeft {
   0% {
@@ -150,6 +151,26 @@ body {
   align-items: center;
 }
 
+.not-logged-message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.not-logged-message .profile-creation-textbox-text {
+  font-size: 2.2rem;
+  text-align: center;
+  color: #F2627A;
+  margin: 3rem;
+}
+.not-logged-message img {
+  width: 25rem;
+  margin-bottom: 5rem;
+}
+
 .u-center-text {
   text-align: center;
 }
@@ -164,6 +185,42 @@ body {
 
 .u-margin-bottom-small {
   margin-bottom: 1.5rem;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem;
+}
+
+.u-margin-top-medium {
+  margin-top: 4rem;
+}
+
+.u-margin-top-small {
+  margin-top: 1.5rem;
+}
+
+.u-padding-bottom-big {
+  padding-bottom: 8rem;
+}
+
+.u-padding-bottom-medium {
+  padding-bottom: 4rem;
+}
+
+.u-padding-bottom-small {
+  padding-bottom: 1.5rem;
+}
+
+.u-padding-top-big {
+  padding-top: 8rem;
+}
+
+.u-padding-top-medium {
+  padding-top: 4rem;
+}
+
+.u-padding-top-small {
+  padding-top: 1.5rem;
 }
 
 .btn-text {
@@ -369,10 +426,134 @@ input[type=date]::-webkit-inner-spin-button {
   text-decoration: none;
 }
 
+/*shows the stars side by side, centered, and in reverse order than the HMTL*/
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+/*hides the radio buttons*/
+.rating > input {
+  display: none;
+}
+
+/*style the empty stars, sets position:relative as base for pseudo-elements*/
+.rating > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 6vw;
+  color: rgba(255, 255, 254, 0.521);
+  cursor: pointer;
+}
+
+/* sets filled star pseudo-elements */
+.rating > label::before {
+  content: "⬤";
+  position: absolute;
+  opacity: 0;
+}
+
+/*overlays a filled start character to the hovered element and all previous siblings*/
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+  opacity: 1 !important;
+}
+
+/*overlays a filled start character on the selected element and all previous siblings*/
+.rating > input:checked ~ label:before {
+  opacity: 1;
+}
+
+/*when an element is selected and pointer re-enters the rating container, selected rate and siblings get semi transparent, as reminder of current selection*/
+.rating:hover > input:checked ~ label:before {
+  opacity: 0.4;
+}
+
+/*just aesthetics*/
+body {
+  background: #222225;
+  color: white;
+}
+
+h1, p {
+  text-align: center;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+}
+.header-container {
+  width: 100vw;
+  height: 5.5rem;
+  background-color: rgba(255, 255, 255, 0.829);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid white;
+  box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.404);
+  z-index: 100;
+}
+.header-container img {
+  position: fixed;
+  top: -1.1rem;
+  height: 8rem;
+}
+
 .container {
   width: 100%;
   text-align: center;
   padding: 3rem;
+}
+
+.navbar-container {
+  width: 100vw;
+  height: 5.5rem;
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid grey;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.navbar-container img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.home-search-container {
+  width: 100vw;
+  height: 30vh;
+  background: #F17834;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F17834, #F2627A);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F17834, #F2627A);
+  position: relative;
+  z-index: -10;
+}
+.home-search-container .triangle {
+  display: block;
+  height: 0px;
+  width: 0px;
+  border: 20px solid transparent;
+  border-top-color: #F17834;
+  position: relative;
+  position: absolute;
+  bottom: -40px;
+  left: calc(50% - 20px);
 }
 
 .profile-image-container, .profile-image-loading {
@@ -562,6 +743,28 @@ input[type=date]::-webkit-inner-spin-button {
   color: white;
   background-color: #df4d65;
   margin-right: 5px;
+}
+
+.dashboard-container {
+  width: 100vw;
+  height: 100vh;
+  background: #F17834;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F17834, #F2627A);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F17834, #F2627A);
+  position: relative;
+}
+.dashboard-container-body {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  padding-top: 6rem;
+  display: flex;
+  justify-content: center;
+}
+.dashboard-container-body h3 {
+  color: rgba(255, 255, 255, 0.644);
 }
 
 /*# sourceMappingURL=App.css.map */

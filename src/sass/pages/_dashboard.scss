@@ -1,21 +1,21 @@
-.home-search-container {
+.dashboard-container {
   width: 100vw;
-  height: 30vh;
+  height: 100vh;
   background: $color-orange-two; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, $color-orange-two, $color-coral-two);
   position: relative;
-  z-index: -10;
 
-  .triangle {
-    display: block;
-    height: 0px;
-    width: 0px;
-    border: 20px solid transparent;
-    border-top-color: $color-orange-two;
-    position: relative;
-    position: absolute;
-    bottom: -40px;
-    left: calc(50% - 20px);
+  &-body{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    padding-top: 6rem;
+    display: flex;
+    justify-content: center;
+
+    h3{
+      color: rgba(255, 255, 255, 0.644);
+    }
   }
 }

@@ -183,7 +183,7 @@ class ProfileCardB extends Component {
           </div>
           <div className="language-box-counter">
             {
-              this.state.langLearnAdded.length > 0 ? this.state.langLearnAdded : <p className="empty-message">add any language</p>
+              this.state.langLearnAdded.length > 0 ? this.state.langLearnAdded : <p className="empty-message">add languages</p>
             }
           </div>
         </div>
