@@ -28,12 +28,10 @@ class PillNew extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state)
   }
 
   addTopic = (event) => {
     if (event.keyCode === 13) {
-      console.log("added!");
       const newTopic = <button key={event.target.value} onClick={this.deleteTopic}>{event.target.value}</button>;
       const newTopicsArray = [...this.state.topicsArray];
       const newTopics = [...this.state.topics];
@@ -41,14 +39,26 @@ class PillNew extends Component {
       newTopicsArray.push(newTopic);
       this.setState({
         topicsArray: newTopicsArray,
-        topics: newTopics
+        topics: newTopics,
+        topic: ""
       })
-      event.target.value = "";
     }
   }
 
   deleteTopic = event => {
-    console.log(event.target.value);
+    const index = this.state.topics.indexOf(event.target.innerHTML);
+    const newTopicsArray = [...this.state.topicsArray];
+    const newTopics = [...this.state.topics];
+    newTopicsArray.splice(index, 1);
+    newTopics.splice(index, 1);
+    this.setState({
+      topicsArray: newTopicsArray,
+      topics: newTopics
+    })
+  }
+
+  savePill = () => {
+    console.log(this.state)
   }
 
   render() {
@@ -93,6 +103,7 @@ class PillNew extends Component {
               topicsArray
             }
           </div>
+          <a href="#0" className="btn-text" onClick={this.savePill}>START&rarr;</a>
         </div>
         <Navbar />
       </div>
