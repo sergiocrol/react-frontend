@@ -12,69 +12,77 @@ class AuthProvider extends Component {
 
   userSignUp = (user) => {
     return authService.signup(user)
-    .then((user) => {
-      this.setState({
-        isLoggedIn: true,
-        user
+      .then((user) => {
+        this.setState({
+          isLoggedIn: true,
+          user
+        })
       })
-    })
   }
 
   userLogin = (user) => {
     return authService.login(user)
-    .then((user) => {
-      this.setState({
-        isLoggedIn: true,
-        user
+      .then((user) => {
+        this.setState({
+          isLoggedIn: true,
+          user
+        })
       })
-    }) 
   }
 
   userLogout = () => {
     return authService.logout()
-    .then(() => {
-      this.setState({
-        isLoggedIn: false,
-        user: {}
+      .then(() => {
+        this.setState({
+          isLoggedIn: false,
+          user: {}
+        })
       })
-    })
+  }
+
+  userUpdate = (user) => {
+    return authService.updateUser(user)
+      .then(() => {
+
+      })
   }
 
   componentDidMount() {
     authService.me()
-    .then(user => {
-      this.setState({
-        user,
-        isLoggedIn: true,
-        isLoading: false,
+      .then(user => {
+        this.setState({
+          user,
+          isLoggedIn: true,
+          isLoading: false,
+        })
       })
-    })
-    .catch(() => {
-      this.setState({
-        isLoggedIn: false,
-        user: {},
-        isLoading: false,
+      .catch(() => {
+        this.setState({
+          isLoggedIn: false,
+          user: {},
+          isLoading: false,
+        })
       })
-    })
   }
 
   render() {
-    const {user, isLoggedIn, isLoading} = this.state;
+    const { user, isLoggedIn, isLoading } = this.state;
     return (
       <>
         {isLoading ? <p>Loading...</p> : (
-            <AuthContext.Provider value={ 
-              {
-                user,
-                isLoggedIn,
-                login: this.userLogin,
-                signup: this.userSignUp,
-                logout: this.userLogout
-              }
-            }>
-              {this.props.children}
-            </AuthContext.Provider>
-          )}
+          <AuthContext.Provider value={
+            {
+              user,
+              isLoggedIn,
+              login: this.userLogin,
+              signup: this.userSignUp,
+              logout: this.userLogout,
+              updateUser: this.userUpdate
+            }
+          }>
+            {this.props.children}
+          </AuthContext.Provider>
+        )}
       </>
     );
   }

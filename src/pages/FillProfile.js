@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
 import ProfileCard from '../components/ProfileCard';
+import ProfileCardB from '../components/ProfileCardB';
 import { Transition, animated } from 'react-spring/renderprops'
 
 
@@ -11,34 +12,34 @@ class FillProfile extends Component {
       <animated.div style={{ ...style }}><ProfileCard props={this.props} info={this.updateUserInfo} /></animated.div>
     ),
     style => (
-      <animated.div style={{ ...style }}><ProfileCard props={this.props} info={this.updateUserInfo} /></animated.div>
-    ),
-    style => (
-      <animated.div style={{ ...style }}><ProfileCard props={this.props} info={this.updateUserInfo} /></animated.div>
-    ),
+      <animated.div style={{ ...style }}><ProfileCardB props={this.props} info={this.updateUserInfo} /></animated.div>
+    )
   ]
 
   state = {
     next: false,
     index: 0,
-    profileImage: '',
-    name: '',
+    profileImage: this.props.user.profileImage,
+    name: this.props.user.name,
     location: '',
     age: '',
-    gender: ''
+    gender: '',
+    langLearnLevel: [],
+    langLevel: []
   }
 
   updateUserInfo = (key, value) => {
     this.setState({
       [key]: value
     })
-    console.log(this.state)
+
   }
 
-  toggle = e =>
+  toggle = e => {
     this.setState(state => ({
-      index: state.index === 2 ? 0 : state.index + 1,
+      index: state.index === 1 ? 0 : state.index + 1,
     }))
+  }
 
   nextPage = () => {
     this.setState({
@@ -51,6 +52,27 @@ class FillProfile extends Component {
       .then(response => {
         return <Redirect to="/" />
       })
+  }
+
+  save = () => {
+    let { name, profileImage, location, age, gender, langLearnLevel, langLevel } = this.state;
+    age = new Date(age);
+    let nativeLanguage = [];
+    let spokenLanguages = [];
+    let learningLanguages = [];
+    langLevel.forEach(lang => { lang.level === 'native' ? nativeLanguage.push(lang.language) : spokenLanguages.push({ lang: lang.language, rate: lang.level }) });
+    langLearnLevel.forEach(lang => { learningLanguages.push({ lang: lang.language, rate: lang.level }) });
+
+    const user = { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages };
+
+    this.props.updateUser(user)
+      .then(() => {
+        return <Redirect to="/home" />
+      })
+    // AGE
+    // var ageDifMs = Date.now() - new Date(this.state.age);
+    // var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    // console.log(Math.abs(ageDate.getUTCFullYear() - 1970));
   }
 
   render() {
@@ -76,11 +98,9 @@ class FillProfile extends Component {
             leave={{ opacity: 0, display: 'none', transform: 'translate3d(-50%,0,0)' }}>
             {index => this.pages[index]}
           </Transition>
-          {/* <ProfileCard props={this.props} /> */}
-          {/* <ProfileCard props={this.props} /> */}
 
         </div>
-        <a href="#0" className="btn-text" onClick={this.toggle}>NEXT&rarr;</a>
+        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
         <a href="#0" onClick={this.handleLogout}>Logout</a>
       </div>
     )

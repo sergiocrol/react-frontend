@@ -1,19 +1,20 @@
-import React, {Component} from 'react'
-import {AuthContext} from '../contexts/auth-context.js';
+import React, { Component } from 'react'
+import { AuthContext } from '../contexts/auth-context.js';
 
 const withAuth = (Comp) => {
   return class WithAuth extends Component {
     render() {
-      return(
+      return (
         <AuthContext.Consumer>
-          {({user, isLoggedIn, login, signup, logout}) => (
-            <Comp  
-            user={user} 
-            isLoggedIn={isLoggedIn} 
-            login={login}
-            signup={signup}
-            logout={logout}
-            {...this.props}
+          {({ user, isLoggedIn, login, signup, logout, updateUser }) => (
+            <Comp
+              user={user}
+              isLoggedIn={isLoggedIn}
+              login={login}
+              signup={signup}
+              logout={logout}
+              updateUser={updateUser}
+              {...this.props}
             />
           )}
         </AuthContext.Consumer>

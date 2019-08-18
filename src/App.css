@@ -1,3 +1,4 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 @keyframes moveInLeft {
   0% {
     opacity: 1;
@@ -95,6 +96,58 @@ body {
 
 .input-feedback {
   color: red;
+}
+
+.mainLoginInput {
+  padding: 0px;
+  font-size: 1.6rem;
+}
+
+.mainLoginInput::-webkit-input-placeholder {
+  font-family: FontAwesome;
+  font-weight: normal;
+  overflow: visible;
+  vertical-align: top;
+  display: inline-block !important;
+  padding-left: 5px;
+  padding-top: 2px;
+  color: #F2627A;
+}
+
+.mainLoginInput::-moz-placeholder {
+  font-family: FontAwesome;
+  font-weight: normal;
+  overflow: visible;
+  vertical-align: top;
+  display: inline-block !important;
+  padding-left: 5px;
+  padding-top: 2px;
+  color: #c27c70;
+}
+
+.mainLoginInput:-ms-input-placeholder {
+  font-family: FontAwesome;
+  font-weight: normal;
+  overflow: visible;
+  vertical-align: top;
+  display: inline-block !important;
+  padding-left: 5px;
+  padding-top: 2px;
+  color: #c27c70;
+}
+
+.language-box-title {
+  width: 100%;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.712);
+}
+
+.empty-message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .u-center-text {
@@ -264,6 +317,20 @@ input[type=date]::-webkit-inner-spin-button {
   color: #F2627A;
 }
 
+.selector-language {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  color: #F2627A;
+  padding-left: 1.5rem;
+  margin-left: auto;
+}
+.selector-language option {
+  background-color: transparent;
+  color: #F2627A;
+}
+
 .tag {
   height: 3.5rem;
   width: 8rem;
@@ -287,6 +354,19 @@ input[type=date]::-webkit-inner-spin-button {
   background-color: rgba(255, 255, 255, 0.616);
   border-radius: 1px;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.493);
+  border: 1px dashed white;
+  resize: none;
+  color: #F2627A;
+  font-weight: 700;
+  font-size: 1.9rem;
+  padding: 1rem;
+  text-decoration: none;
 }
 
 .container {
@@ -378,7 +458,7 @@ input[type=date]::-webkit-inner-spin-button {
   border-radius: 1rem;
   padding: 2rem 0;
   position: relative;
-  margin-bottom: 8rem;
+  margin-bottom: 6rem;
 }
 .profile-creation-textbox p {
   font-weight: 700;
@@ -393,6 +473,95 @@ input[type=date]::-webkit-inner-spin-button {
   position: absolute;
   bottom: -40px;
   left: calc(50% - 20px);
+}
+
+.language-box {
+  width: 90vw;
+  height: 20vh;
+  border-radius: 5px;
+  border: 1px dashed white;
+  max-width: 768px;
+  display: flex;
+}
+.language-box-select {
+  width: 40%;
+  height: 100%;
+  border-right: 1px solid white;
+}
+.language-box-select input {
+  width: 100%;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.719);
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid white;
+  color: #F2627A;
+}
+.language-box-select div {
+  width: 100%;
+  height: 85%;
+  background-color: rgba(255, 255, 255, 0.596);
+  overflow: auto;
+  /* Track */
+  /* Handle */
+}
+.language-box-select div p {
+  text-align: left;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border-bottom: 1px solid grey;
+}
+.language-box-select div p:hover {
+  background-color: rgba(255, 255, 255, 0.74);
+}
+.language-box-select div::-webkit-scrollbar {
+  width: 7px;
+}
+.language-box-select div::-webkit-scrollbar-track {
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+.language-box-select div::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ec6685;
+}
+.language-box-counter {
+  width: 60%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.815);
+  padding: 1.1rem;
+  overflow: auto;
+  /* Track */
+  /* Handle */
+}
+.language-box-counter::-webkit-scrollbar {
+  width: 7px;
+}
+.language-box-counter::-webkit-scrollbar-track {
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+.language-box-counter::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ec6685;
+}
+
+.language-selected {
+  width: 100%;
+  display: flex;
+}
+
+.delete-button {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: #df4d65;
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=App.css.map */

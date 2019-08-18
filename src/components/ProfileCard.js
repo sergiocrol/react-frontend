@@ -15,7 +15,7 @@ class ProfileCard extends Component {
     name: this.props.props.user.name,
     location: "",
     age: "Birthday",
-    gender: ''
+    gender: 'Female'
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -39,6 +39,7 @@ class ProfileCard extends Component {
       .getDownloadURL()
       .then(url => {
         this.setState({ profileImage: url })
+        this.props.info('profileImage', url)
       });
   };
 
@@ -52,7 +53,6 @@ class ProfileCard extends Component {
   render() {
     const { isUploading, progress } = this.state;
     return (
-
       <form className="form" autoComplete="off">
         <CustomUploadButton
           accept="image/*"
@@ -102,7 +102,6 @@ class ProfileCard extends Component {
           </select>
         </div>
       </form>
-
     )
   }
 }

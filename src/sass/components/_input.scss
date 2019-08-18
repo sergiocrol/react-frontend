@@ -91,6 +91,21 @@ input[type=date]::-webkit-inner-spin-button {
   }
 }
 
+.selector-language {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  color: $color-coral-two;
+  padding-left: 1.5rem;
+  margin-left: auto;
+
+  option{
+    background-color: transparent;
+    color: $color-coral-two;
+  }
+}
+
 .tag {
   height: 3.5rem;
   width: 8rem;
@@ -115,4 +130,17 @@ input[type=date]::-webkit-inner-spin-button {
     border-radius: 1px;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
   }
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.493);
+  border: 1px dashed white;
+  resize: none;
+  color: $color-coral-two;
+  font-weight: 700;
+  font-size: 1.9rem;
+  padding: 1rem;
+  text-decoration: none;
 }

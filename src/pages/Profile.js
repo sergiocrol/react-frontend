@@ -17,7 +17,8 @@ class Profile extends Component {
     name: this.props.user.name,
     location: "",
     age: "Birthday",
-    secondPage: false
+    secondPage: false,
+
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -124,7 +125,7 @@ class Profile extends Component {
               </select>
             </div>
           </form>
-          <a className="btn-text" href="#0" onClick={this.nextPage}>NEXT&rarr;</a>
+
           <a href="#0" onClick={this.handleLogout}>Logout</a>
         </div>
       </div >
