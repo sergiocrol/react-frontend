@@ -1,7 +1,9 @@
+import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
 import Header from '../components/Header.jsx';
+import pillService from '../services/pill-service.js';
 const lang = require('../helpers/languages');
 
 class PillNew extends Component {
@@ -13,7 +15,9 @@ class PillNew extends Component {
     difficulty: 1,
     topic: "",
     topicsArray: [],
-    topics: []
+    topics: [],
+    redirect: false,
+    pill: {}
   }
 
   langArray = () => {
@@ -58,11 +62,24 @@ class PillNew extends Component {
   }
 
   savePill = () => {
-    console.log(this.state)
+    let { name, fromLanguage, toLanguage, difficulty, description, topics } = this.state;
+    difficulty = +difficulty;
+    const date = new Date();
+    const author = this.props.user._id;
+    const pill = { name, fromLanguage, toLanguage, author, date, difficulty, description, topics };
+    pillService.newPill(pill)
+      .then(pill => {
+        console.log(pill);
+        this.setState({
+          redirect: true,
+          pill: pill
+        })
+      })
   }
 
   render() {
-    const { name, fromLanguage, toLanguage, description, topic, topicsArray } = this.state;
+    const { name, fromLanguage, toLanguage, description, topic, topicsArray, pill } = this.state;
+    if (this.state.redirect) { return <Redirect to={`/pills/${pill._id}/create`} /> }
     return (
       <div>
         <Header />
