@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.u-is-disabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
 .u-margin-bottom-big {margin-bottom: 8rem;}
 .u-margin-bottom-medium {margin-bottom: 4rem;}
 .u-margin-bottom-small {margin-bottom: 1.5rem;}

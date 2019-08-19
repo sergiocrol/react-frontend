@@ -1,7 +1,7 @@
 .card {
   max-width: 700px;
-  max-height: 700px;
-  width: 80vw;
+  max-height: 650px;
+  width: 90vw;
   height: 80vh;
   display: flex;
   align-items: center;
@@ -20,13 +20,20 @@
   height: 100%;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  border: 15px solid white;
+  border: 1rem solid white;
 }
 
 .card-title {
   width: 100%;
   height: 4rem;
-  background-color: #E9ADA7;
+  background-color: rgb(194, 142, 137);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  font-size: 2rem;
+  
+  box-shadow: 0px 10px 12px -8px rgba(184,152,118,0.75);
 
   a{
     text-decoration: none;
@@ -43,6 +50,67 @@
 }
 
 .images-card-container{
+  display: flex;
+  flex-wrap: wrap;
+
+  div{
+    width: 50%;
+    height: 27rem;
+    max-height: 40rem;
+
+    border: 1px solid white;
+    position: relative;
+
+    .images-card-image-container{
+      width: 100%;
+      height: calc(100% - 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $color-coral-two;
+      cursor: pointer;
+      border: 0;
+
+      .span {
+        background-color: rgba(255, 255, 255, 0.658);
+        padding: 5px 1rem;
+        border-radius: 2rem;
+        position: relative;
+      }
+      
+      img {
+        width: 15rem;
+      }
+
+    }
+    .images-card-loading{
+          background-color: transparent;
+          border: 0;
+        }
+
+    input {
+      width: 99%;
+      height: 3rem;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.363);
+      border: 0;
+      outline: 0;
+      border-top: 1px solid $color-coral-two;
+      text-align: center;
+      font-size: 1.3rem;
+      color: $color-coral-two;
+      text-transform: uppercase;
+
+      &::placeholder {
+        color: $color-coral-two;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+    }
+  }
 
 }
 
@@ -57,4 +125,26 @@
   line-height: 5rem;
   color: white;
   text-decoration: none;
+}
+
+.card-container{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.triangle-two{
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-right-width: 14px;
+  border-left-width: 14px;
+  border-bottom: 7px solid rgba(255, 255, 255, 0.658);
+  position: absolute;
+  top: -.7rem;
+  left: calc(14px + 28%);
 }

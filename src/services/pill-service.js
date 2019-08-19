@@ -19,6 +19,12 @@ class PillService {
       .then(({ data }) => data);
   }
 
+  newCard(card) {
+    const { type, pillId, images } = card;
+    return this.pill.post('/pills/card/image', { type, pillId, images })
+      .then(({ data }) => data);
+  }
+
 }
 
 const pillService = new PillService();

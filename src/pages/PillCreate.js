@@ -23,7 +23,7 @@ class PillCreate extends Component {
 
   hide = { opacity: 0 }
   show = { opacity: 1 }
-  imageEasy = <ImageEasy flip={this.updateFlip} />
+  imageEasy = <ImageEasy flip={this.updateFlip} props={this.props} />
   testCardTwo = <TestCardTwo />
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class PillCreate extends Component {
     return (
       <div>
         <Header />
-        <div className="dashboard-container u-padding-top-big">
+        <div className="dashboard-container card-container u-padding-top-big">
           <Spring native to={{ transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)` }}>
             {props => (
               <animated.div className="card" style={props}>
