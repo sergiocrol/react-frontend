@@ -132,7 +132,7 @@ class ImageEasy extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state.imageOneUrl.props.src)
+    console.log(this.props.toggle)
   }
 
   isComplete = () => {
@@ -156,6 +156,8 @@ class ImageEasy extends Component {
     pillService.newCard(card)
       .then(card => {
         console.log(card);
+        this.props.flip();
+        this.props.toggle();
         return this.props.flip;
       })
   }
