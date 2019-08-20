@@ -30,6 +30,14 @@ class AuthService {
       .then(response => response.data)
   }
 
+  currentUser() {
+    return this.auth.get('/auth/current')
+    .then(({data}) => {
+      console.log(data);
+      return data;
+    })
+  }
+
   updateUser(user) {
     const { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages } = user;
     return this.auth.put('/auth/profile', { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PillBox from '../components/PillBox.js';
 import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
 import Header from '../components/Header.jsx';
@@ -19,7 +20,18 @@ class Dashboard extends Component {
   state = {
     createdVisible: true,
     takenVisible: false,
-    scoreVisible: false
+    scoreVisible: false,
+    user: {}
+  }
+
+  componentDidMount() {
+    this.props.currentUser()
+      .then(user => {
+        console.log(user)
+        this.setState({
+          user: user
+        })
+      })
   }
 
   changePanel = (select) => {
@@ -48,18 +60,27 @@ class Dashboard extends Component {
     }
   }
 
+  pillsContent = () => {
+    if (this.state.user.createdPills !== undefined && Object.keys(this.state.user.createdPills).length > 0) {
+      const el = this.state.user.createdPills.map(el => {
+        return el.name;
+      })
+      return el;
+    }
+  }
+
   render() {
-    const createdVisible = this.state.createdVisible ? 'dashboard-content-container-created' : 'dashboard-content-container-created u-display-none';
-    const takenVisible = this.state.takenVisible ? 'dashboard-content-container-taken' : 'dashboard-content-container-taken u-display-none';
-    const scoreVisible = this.state.scoreVisible ? 'dashboard-content-container-score' : 'dashboard-content-container-score u-display-none';
+    const createdVisible = this.state.createdVisible ? '' : 'u-display-none';
+    const takenVisible = this.state.takenVisible ? '' : 'u-display-none';
+    const scoreVisible = this.state.scoreVisible ? '' : 'u-display-none';
     const createdColor = this.state.createdVisible ? {} : { color: 'rgba(255, 255, 255, 0.4)' };
     const takenColor = this.state.takenVisible ? {} : { color: 'rgba(255, 255, 255, 0.4)' };
     const scoreColor = this.state.scoreVisible ? {} : { color: 'rgba(255, 255, 255, 0.4)' };
     const createdImage = this.state.createdVisible ? created : created2;
     const takenImage = this.state.takenVisible ? taken : taken2;
     const scoreImage = this.state.scoreVisible ? score : score2;
-
-    console.log("created " + createdVisible, "taken " + takenVisible, "score " + scoreVisible);
+    const user = this.state.user;
+    console.log(this.pillsContent())
     return (
       <div>
         <Header />
@@ -74,20 +95,28 @@ class Dashboard extends Component {
                   <div className="triangle-dashboard"></div>
                 </div>
                 <div className="dashboard-content-container">
-                  <section className={createdVisible}>
-                    <h2 className="u-margin-bottom-medium">empty</h2>
-                    <img src={empty} alt="no data"/>
-                    <a href="#0" className="u-margin-top-big" ><img src={add} alt="created pill" /> new pill</a>
+                  {user.createdPills !== undefined && Object.keys(user.createdPills).length > 0 ? (
+                    <section className={`pills-container ${createdVisible}`}>
+                      {user.createdPills.map(el => {
+                        return <PillBox user={el} />
+                      })}
+                    </section>
+                  ) : (
+                      <section className={`dashboard-content-container-created ${createdVisible}`}>
+                        <h2 className="u-margin-bottom-medium">empty</h2>
+                        <img src={empty} alt="no data" />
+                        <Link to="/pills/new" className="u-margin-top-big" ><img src={add} alt="created pill" /> new pill</Link>
+                      </section>
+                    )}
+                  <section className={`dashboard-content-container-taken ${takenVisible}`}>
+                    <h2 className="u-margin-top-big">empty</h2>
+                    <img src={emptycourse} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
+                    <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
                   </section>
-                  <section className={takenVisible}>
-                  <h2 className="u-margin-top-big">empty</h2>
-                    <img src={emptycourse} alt="no data" className="u-margin-top-big u-margin-bottom-big"/>
-                    <a href="#0" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</a>
-                  </section>
-                  <section className={scoreVisible}>
-                  <h2 className="u-margin-top-big">empty</h2>
-                    <img src={emptyscore} alt="no data" className="u-margin-top-big u-margin-bottom-big"/>
-                    <a href="#0" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</a>
+                  <section className={`dashboard-content-container-score ${scoreVisible}`}>
+                    <h2 className="u-margin-top-big">empty</h2>
+                    <img src={emptyscore} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
+                    <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
                   </section>
                 </div>
                 {/* <h3>Dashboard</h3>
@@ -100,7 +129,7 @@ class Dashboard extends Component {
                     <p className="profile-creation-textbox-text">Please, login to get access to your dashboard</p>
                     <span className="triangle"></span>
                   </div>
-                  <Link to=""> <a href="#0" className="btn-text" >LOGIN&rarr;</a> </Link>
+                  <Link to="/login" className="btn-text"> LOGIN&rarr;</Link>
                 </div>
               )
           }

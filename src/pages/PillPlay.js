@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import pillService from '../services/pill-service.js';
+import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
 import Header from '../components/Header.jsx';
-import ImageEasy from '../components/ImageEasy';
-import TestCardTwo from '../components/TestCardTwo';
+import ImageCard from '../components/ImageCard';
+import SoundCard from '../components/SoundCard';
+import pillService from '../services/pill-service.js';
 import { Spring, Transition, animated } from 'react-spring/renderprops'
 
-
-class PillCreate extends Component {
+class PillPlay extends Component {
+  arrayCards = [];
 
   state = {
     pill: {},
+    index: 0,
     flipped: false,
-    component: "",
-    index: 1,
-    finish: false
+    finish: false,
+    component: ''
   }
 
   updateFlip = () => {
@@ -37,13 +38,54 @@ class PillCreate extends Component {
     })
   }
 
+
+  componentDidMount() {
+    pillService.getPill(this.props.match.params.id)
+      .then(pill => {
+        this.setState({
+          pill: pill
+        })
+        console.log(pill);
+        this.fillArrayComponents(pill.cards)
+      })
+  }
+
+  fillArrayComponents = (cards) => {
+    cards.map(card => {
+      switch (card.type) {
+        case 'imageEasy':
+          this.arrayCards.push(<ImageCard content={card.images} flip={this.updateFlip} />)
+          break;
+        case 'soundEasy':
+          this.arrayCards.push(<SoundCard content={card.sound} flip={this.updateFlip} />)
+          break;
+        default:
+          break;
+      }
+    })
+    const firstComponent = this.arrayCards[5];
+    this.setState({
+      component: firstComponent
+    })
+    console.log(this.arrayCards)
+  }
+
+  click = (str) => {
+    const newComponent = (str === 'hola') ? this.imageEasy : this.testCardTwo;
+    this.setState(state => ({
+      flipped: !state.flipped,
+      component: newComponent
+    }))
+  }
+
   hide = { opacity: 0 }
   show = { opacity: 1 }
-  imageEasy = <ImageEasy flip={this.updateFlip} props={this.props} toggle={this.toggle} />;
-  testCardTwo = <TestCardTwo />
+  // imageEasy = <ImageEasy flip={this.updateFlip} props={this.props} toggle={this.toggle} />;
+  // testCardTwo = <TestCardTwo />
+
 
   TestScreen1 = (props) => {
-    const { flipped, component } = this.state;
+    const { flipped, component, componentSolution } = this.state;
     return (
       <Spring native to={{ transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)` }}>
         {props => (
@@ -55,19 +97,7 @@ class PillCreate extends Component {
                     transform: `rotateY(${flipped ? 180 : 0}deg)`,
                     opacity: opacity.interpolate({ range: [0, 0.5, 1], output: [0, 0, 1] })
                   }}>
-                  {flipped ? component : (
-                    <>
-                      <ul>
-                        <li>
-                          <button onClick={() => { this.click("hola") }}>Name images</button>
-                        </li>
-                        <li>
-                          <button onClick={this.toggle}>Sound test</button>
-                        </li>
-                      </ul>
-                      {this.state.index > 1 && <button className="pill-finish-button" onClick={this.finishPill}>-FINISH-</button>}
-                    </>
-                  )}
+                  {flipped ? component : component}
                 </animated.div>
               )}
             </Transition>
@@ -77,26 +107,7 @@ class PillCreate extends Component {
     )
   }
 
-  componentDidMount() {
-    pillService.getPill(this.props.match.params.id)
-      .then(pill => {
-        this.setState({
-          pill: pill
-        })
-        console.log(pill);
-      })
-  }
-
-  click = (str) => {
-    const newComponent = (str === 'hola') ? this.imageEasy : this.testCardTwo;
-    this.setState(state => ({
-      flipped: !state.flipped,
-      component: newComponent
-    }))
-  }
-
   render() {
-    //const { name, fromLanguage, toLanguage } = this.state.pill;
     const { index, finish } = this.state;
     if (finish) { return <Redirect to="/home" /> }
 
@@ -128,4 +139,4 @@ class PillCreate extends Component {
   }
 }
 
-export default PillCreate;
+export default withAuth(PillPlay);

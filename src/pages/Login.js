@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import withAuth from '../components/withAuth';
@@ -9,7 +9,8 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    wrongCredentials: false
+    wrongCredentials: false,
+    logged: false
   }
 
   handleFormSubmit = (values) => {
@@ -17,7 +18,9 @@ class Login extends Component {
 
     this.props.login({ email, password })
       .then((user) => {
-        console.log(user)
+        this.setState({
+          logged: true
+        })
       })
       .catch(error => this.setState({ wrongCredentials: true }))
   }
@@ -31,6 +34,7 @@ class Login extends Component {
   }
 
   render() {
+  console.log(this.props)
     return (
       <div className="container">
         <h1>Login</h1>

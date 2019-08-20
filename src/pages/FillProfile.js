@@ -25,7 +25,8 @@ class FillProfile extends Component {
     age: '',
     gender: '',
     langLearnLevel: [],
-    langLevel: []
+    langLevel: [],
+    filled: false
   }
 
   updateUserInfo = (key, value) => {
@@ -67,7 +68,10 @@ class FillProfile extends Component {
 
     this.props.updateUser(user)
       .then(() => {
-        return <Redirect to="/home" />
+        this.setState({
+          filled: true
+        })
+        
       })
     // AGE
     // var ageDifMs = Date.now() - new Date(this.state.age);
@@ -76,6 +80,8 @@ class FillProfile extends Component {
   }
 
   render() {
+    console.log(this.props)
+    if(this.state.filled) {return <Redirect to="/home" />};
     const user = this.props.user;
     return (
       <div className="container profile-creation">

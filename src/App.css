@@ -430,6 +430,10 @@ body {
   margin-bottom: 5rem;
 }
 
+.sdf {
+  color: black;
+}
+
 .u-center-text {
   text-align: center;
 }
@@ -959,6 +963,21 @@ p {
   height: 3rem;
 }
 
+.pill-box-container {
+  width: 100%;
+  height: 100%;
+  color: black;
+  height: 10rem;
+}
+
+.pills-container {
+  width: 100%;
+  height: auto;
+  max-width: 768px;
+  margin: 0 auto;
+  border: 0;
+}
+
 .home-search-container {
   width: 100vw;
   height: 30vh;
@@ -1065,7 +1084,7 @@ p {
   border-radius: 1rem;
   padding: 2rem 0;
   position: relative;
-  margin-bottom: 6rem;
+  margin: 0 1.5rem 6rem 1.5rem;
 }
 .profile-creation-textbox p {
   font-weight: 700;
@@ -1402,6 +1421,101 @@ p {
   /* Data URI encoded from: gradient.svg */
   background: #F17834 url(data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjUwMHB4IiBoZWlnaHQ9IjUwMHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAuNSIgeTE9IjAiIHgyPSIwLjUiIHkyPSIxIj4KICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRjI2MjdBIiAvPgogICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGMTc4MzQiIC8+CiAgPC9saW5lYXJHcmFkaWVudD4KIDwvZGVmcz4KIDxnPgogIDxyZWN0IGZpbGw9InVybCgjZ3JhZGllbnQpIiBzdHJva2Utd2lkdGg9IjAiIHg9IjAiIHk9IjAiIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiAvPgogPC9nPgo8L3N2Zz4KICAgIA==) top repeat-x;
   background-size: contain;
+}
+
+.container-pill {
+  width: 100vw;
+  height: 100vh;
+  background: #F17834;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F17834, #F2627A);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F17834, #F2627A);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.container-pill .container-content {
+  width: 90%;
+  height: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container-pill .container-content h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  border: 3px solid rgba(255, 255, 255, 0.486);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.container-pill .container-content-language {
+  font-size: 1.6rem;
+}
+.container-pill .container-content-language span {
+  border: 2px solid white;
+  border-radius: 3px;
+  padding: 3px;
+  color: #F2627A;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.651);
+}
+.container-pill .container-content-description {
+  width: 90%;
+  height: 15rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.342);
+  border: 1px dashed white;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-pill .level-bullet {
+  display: flex;
+  align-items: center;
+}
+.container-pill .level-bullet label {
+  font-size: 8rem;
+}
+.container-pill .level-bullet span {
+  font-size: 2rem;
+  margin-right: 2rem;
+  letter-spacing: 3px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0 2rem;
+  color: #F2627A;
+  position: relative;
+}
+.container-pill .level-bullet .triangle-right {
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-bottom-width: 15px;
+  border-top-width: 15px;
+  border-left: 12px solid white;
+  position: absolute;
+  right: -11px;
+  top: 1px;
+}
+
+.topic-button {
+  border: 2px solid white;
+  border-radius: 1.5rem;
+  padding: 0 1rem;
+  color: #F2627A;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.651);
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+.topic-title {
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=App.css.map */

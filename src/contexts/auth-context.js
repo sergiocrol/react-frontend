@@ -47,6 +47,13 @@ class AuthProvider extends Component {
       })
   }
 
+  userGet = () => {
+    return authService.currentUser()
+    .then((user) => {
+      return user
+    })
+  }
+
   componentDidMount() {
     authService.me()
       .then(user => {
@@ -77,7 +84,8 @@ class AuthProvider extends Component {
               login: this.userLogin,
               signup: this.userSignUp,
               logout: this.userLogout,
-              updateUser: this.userUpdate
+              updateUser: this.userUpdate,
+              currentUser: this.userGet
             }
           }>
             {this.props.children}

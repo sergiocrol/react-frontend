@@ -14,6 +14,8 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import PillNew from './pages/PillNew';
 import PillCreate from './pages/PillCreate';
+import PillPage from './pages/PillPage.js';
+import PillPlay from './pages/PillPlay.js';
 
 import AuthProvider from './contexts/auth-context.js';
 
@@ -42,6 +44,8 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/pills/:id/create" component={PillCreate} />
               <PrivateRoute exact path="/pills/new" component={PillNew} />
+              <PrivateRoute exact path="/pills/:id" component={PillPage} />
+              <PrivateRoute exact path="/pills/:id/play" component={PillPlay} />
             </Switch>
           </div>
         </AuthProvider>
