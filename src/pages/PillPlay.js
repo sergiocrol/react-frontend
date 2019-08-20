@@ -4,6 +4,7 @@ import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
 import Header from '../components/Header.jsx';
 import ImageCard from '../components/ImageCard';
+import ImageCardSolution from '../components/ImageCardSolution';
 import SoundCard from '../components/SoundCard';
 import pillService from '../services/pill-service.js';
 import { Spring, Transition, animated } from 'react-spring/renderprops'
@@ -13,13 +14,31 @@ class PillPlay extends Component {
 
   state = {
     pill: {},
-    index: 0,
+    index: 5,
     flipped: false,
     finish: false,
-    component: ''
+    component: '',
+    componentSolution: '',
+    score: 0
   }
 
-  updateFlip = () => {
+  updateFlip = (response) => {
+    let newComponentSolution = '';
+    switch (response.type) {
+      case 'imageEasy':
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle}/>
+        break;
+      default:
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} />
+        break;
+    }
+    this.setState(state => ({
+      componentSolution: newComponentSolution,
+      flipped: !state.flipped,
+    }))
+  }
+
+  flip = () => {
     this.setState(state => ({
       flipped: !state.flipped,
     }))
@@ -27,7 +46,8 @@ class PillPlay extends Component {
 
   toggle = e => {
     this.setState(state => ({
-      index: state.index + 1
+      index: state.index + 1,
+      component: this.arrayCards[state.index + 1]
     }));
     console.log(this.state.index)
   }
@@ -97,7 +117,7 @@ class PillPlay extends Component {
                     transform: `rotateY(${flipped ? 180 : 0}deg)`,
                     opacity: opacity.interpolate({ range: [0, 0.5, 1], output: [0, 0, 1] })
                   }}>
-                  {flipped ? component : component}
+                  {flipped ? componentSolution : component}
                 </animated.div>
               )}
             </Transition>
@@ -132,7 +152,7 @@ class PillPlay extends Component {
           </Transition>
 
         </div>
-        <p className="number-card">{this.state.index} <span>of</span> {this.state.index}</p>
+        <p className="number-card">{this.state.index + 1} <span>of</span> {this.arrayCards.length}</p>
         <Navbar />
       </div>
     )
