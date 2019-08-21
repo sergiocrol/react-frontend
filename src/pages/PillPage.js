@@ -30,7 +30,7 @@ class PillPage extends Component {
   }
 
   render() {
-    const { name, fromLanguage, toLanguage, description, topics, _id } = this.state.pill;
+    const { name, fromLanguage, toLanguage, description, topics, _id, numberTaken } = this.state.pill;
     let topicArray = [];
     if (topics !== undefined) {
       topicArray = topics.map((el, i) => { return <p key={i} className="topic-button">{el}</p> })
@@ -47,10 +47,10 @@ class PillPage extends Component {
           <h1>{name}</h1>
           <p className="container-content-language u-margin-top-small"><span>{fromLanguage}</span> &#8651; <span>{toLanguage}</span></p>
           <div className="container-content-description u-margin-top-medium">{description}</div>
-          <div> <span>author: {author} </span></div>
+          <div className="pill-author"> <span>author: {author} </span><span>nº taken: {numberTaken} </span></div>
           <p className="level-bullet"><span>level<div className="triangle-right"></div></span>{this.level()}</p>
           <p className="topic-title">You are going to learn: </p>
-          <div className="u-margin-bottom-medium">{topicArray}</div>
+          <div className="topic-body u-margin-bottom-medium">{topicArray}</div>
           <Link to={`/pills/${_id}/play`} className="btn-text">START &rarr;</Link>
         </div>
         <Navbar />

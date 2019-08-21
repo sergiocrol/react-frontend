@@ -41,6 +41,7 @@ class ImageCardSolution extends Component {
   }
 
   nextCard = () => {
+    this.props.score(this.state.score);
     this.props.flip();
     this.props.toggle();
   }
@@ -52,11 +53,13 @@ class ImageCardSolution extends Component {
     const correctTwo = images[1].answer[0];
     const correctThree = images[2].answer[0];
     const correctFour = images[3].answer[0];
-    console.log(answerOne, correctOne)
     const classOne = answerOne === correctOne ? 'label-green' : 'label-red';
     const classTwo = answerTwo === correctTwo ? 'label-green' : 'label-red';
     const classThree = answerThree === correctThree ? 'label-green' : 'label-red';
     const classFour = answerFour === correctFour ? 'label-green' : 'label-red';
+    const text = this.props.index === this.props.last-1 ? 'FINISH' : 'NEXT';
+    const func = this.props.index === this.props.last-1 ? this.props.finish : this.nextCard;
+    console.log(this.props.index, this.props.last-1)
   
     return (
       <div>
@@ -86,7 +89,7 @@ class ImageCardSolution extends Component {
             <label className={`images-card-answer-label ${classFour}`}> {answerFour}</label>
           </div>
         </div>
-        <a href="#0" className='button-next-card' onClick={this.nextCard}>NEXT</a>
+        <a href="#0" className='button-next-card' onClick={func}>{text}</a>
       </div>
     )
   }

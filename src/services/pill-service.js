@@ -25,6 +25,16 @@ class PillService {
       .then(({ data }) => data);
   }
 
+  countTaken(pillId) {
+    return this.pill.put(`/pills/pill/${pillId}/taken`)
+      .then(({ data }) => data);
+  }
+
+  rating(pillId, rate) {
+    return this.pill.put(`/pills/pill/${pillId}/rate`, { rate })
+      .then(({data}) => data)
+  }
+
 }
 
 const pillService = new PillService();

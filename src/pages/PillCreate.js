@@ -83,7 +83,6 @@ class PillCreate extends Component {
         this.setState({
           pill: pill
         })
-        console.log(pill);
       })
   }
 

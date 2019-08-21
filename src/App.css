@@ -767,6 +767,50 @@ p {
     font-size: 12px;
   }
 }
+/*shows the stars side by side, centered, and in reverse order than the HMTL*/
+.rating2 {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+/*hides the radio buttons*/
+.rating2 > input {
+  display: none;
+}
+
+/*style the empty stars, sets position:relative as base for pseudo-elements*/
+.rating2 > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 6vw;
+  color: rgba(255, 255, 254, 0.521);
+  cursor: pointer;
+}
+
+/* sets filled star pseudo-elements */
+.rating2 > label::before {
+  content: "★";
+  position: absolute;
+  opacity: 0;
+}
+
+/*overlays a filled start character to the hovered element and all previous siblings*/
+.rating2 > label:hover:before,
+.rating2 > label:hover ~ label:before {
+  opacity: 1 !important;
+}
+
+/*overlays a filled start character on the selected element and all previous siblings*/
+.rating2 > input:checked ~ label:before {
+  opacity: 1;
+}
+
+/*when an element is selected and pointer re-enters the rating container, selected rate and siblings get semi transparent, as reminder of current selection*/
+.rating2:hover > input:checked ~ label:before {
+  opacity: 0.4;
+}
+
 .header-container {
   width: 100vw;
   height: 5.5rem;
@@ -1559,6 +1603,38 @@ p {
 
 .topic-title {
   font-size: 2rem;
+}
+
+.topic-body {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.pill-author {
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-image {
+  width: 20rem;
+}
+
+.score-title {
+  font-size: 2.5rem;
+}
+
+.score-result {
+  font-size: 6rem;
+  color: #F2627A;
+}
+
+.score-container {
+  background-color: rgba(255, 255, 255, 0.451);
+  border: 3px solid white;
+  padding: 0 5rem;
 }
 
 /*# sourceMappingURL=App.css.map */

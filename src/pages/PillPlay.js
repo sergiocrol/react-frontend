@@ -7,6 +7,7 @@ import ImageCard from '../components/ImageCard';
 import ImageCardSolution from '../components/ImageCardSolution';
 import SoundCard from '../components/SoundCard';
 import pillService from '../services/pill-service.js';
+import userService from '../services/user-service.js';
 import { Spring, Transition, animated } from 'react-spring/renderprops'
 
 class PillPlay extends Component {
@@ -14,22 +15,22 @@ class PillPlay extends Component {
 
   state = {
     pill: {},
-    index: 5,
+    index: 0,
     flipped: false,
-    finish: false,
     component: '',
     componentSolution: '',
-    score: 0
+    score: 0,
+    redirect: false
   }
 
   updateFlip = (response) => {
     let newComponentSolution = '';
     switch (response.type) {
       case 'imageEasy':
-        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle}/>
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish}/>
         break;
       default:
-        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} />
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish}/>
         break;
     }
     this.setState(state => ({
@@ -49,15 +50,28 @@ class PillPlay extends Component {
       index: state.index + 1,
       component: this.arrayCards[state.index + 1]
     }));
-    console.log(this.state.index)
   }
 
-  finishPill = () => {
+  updateScore = (score) => {
+    const newScore = this.state.score + score;
     this.setState({
-      finish: true
+      score: newScore
     })
   }
 
+  finish = () => {
+    userService.updateScore(this.state.score, this.props.match.params.id)
+    .then(user => {
+      console.log(user);
+    })
+    pillService.countTaken(this.props.match.params.id)
+    .then(pill => {
+      console.log(pill);
+    })
+    this.setState({
+      redirect: true
+    })
+  }
 
   componentDidMount() {
     pillService.getPill(this.props.match.params.id)
@@ -65,7 +79,6 @@ class PillPlay extends Component {
         this.setState({
           pill: pill
         })
-        console.log(pill);
         this.fillArrayComponents(pill.cards)
       })
   }
@@ -83,11 +96,10 @@ class PillPlay extends Component {
           break;
       }
     })
-    const firstComponent = this.arrayCards[5];
+    const firstComponent = this.arrayCards[0];
     this.setState({
       component: firstComponent
     })
-    console.log(this.arrayCards)
   }
 
   click = (str) => {
@@ -100,8 +112,6 @@ class PillPlay extends Component {
 
   hide = { opacity: 0 }
   show = { opacity: 1 }
-  // imageEasy = <ImageEasy flip={this.updateFlip} props={this.props} toggle={this.toggle} />;
-  // testCardTwo = <TestCardTwo />
 
 
   TestScreen1 = (props) => {
@@ -128,9 +138,9 @@ class PillPlay extends Component {
   }
 
   render() {
-    const { index, finish } = this.state;
-    if (finish) { return <Redirect to="/home" /> }
-
+    const { index, redirect, score } = this.state;
+    if(redirect) {return <Redirect to={{pathname: `/pills/${this.props.match.params.id}/play/result`, state: 'dfg'}}/>}
+    
     return (
       <div>
         <Header />

@@ -195,7 +195,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" />
+            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
           </div>
           <div>
             <CustomUploadButton
@@ -218,7 +218,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" />
+            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
           </div>
           <div>
             <CustomUploadButton
@@ -241,7 +241,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" />
+            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
           </div>
           <div>
             <CustomUploadButton
@@ -264,7 +264,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input type="text" name="answerFour" value={answerFour || ''} className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" />
+            <input type="text" name="answerFour" value={answerFour || ''} className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
           </div>
         </div>
         <a href="#0" className={complete} onClick={completeTwo}>NEXT CARD</a>
