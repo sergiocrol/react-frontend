@@ -36,7 +36,7 @@ class PillNew extends Component {
 
   addTopic = (event) => {
     if (event.keyCode === 13) {
-      const newTopic = <button key={event.target.value} onClick={this.deleteTopic}>{event.target.value}</button>;
+      const newTopic = <button className="topic-new-button" key={event.target.value} onClick={this.deleteTopic}>{event.target.value}</button>;
       const newTopicsArray = [...this.state.topicsArray];
       const newTopics = [...this.state.topics];
       newTopics.push(event.target.value);
@@ -84,43 +84,46 @@ class PillNew extends Component {
       <div>
         <Header />
         <div className="dashboard-container u-padding-top-big">
-          <div className="profile-creation-textbox">
-            <p className="profile-creation-textbox-text u-center-text">Let's create a new Pill! :D</p>
-            <p className="profile-creation-textbox-text u-center-text">Tell to the student what is going to learn</p>
-            <span className="triangle"></span>
+          <div className="pill-creation-container">
+            <div className="profile-creation-textbox">
+              <p className="profile-creation-textbox-text u-center-text">Let's create a new Pill! :D</p>
+              <p className="profile-creation-textbox-text u-center-text">Tell the student what they will learn</p>
+              <span className="triangle"></span>
+            </div>
+            <div className="language-selector-container">
+              <select className="selector search-box-selector select-new" name="fromLanguage" id="fromLanguage" value={fromLanguage} onChange={this.handleChange}>
+                {
+                  this.langArray().map((lang, i) => { return <option key={i}>{lang}</option> })
+                }
+              </select>
+              <span>&#8651;</span>
+              <select className="selector search-box-selector select-new" name="toLanguage" id="toLanguage" value={toLanguage} onChange={this.handleChange}>
+                {
+                  this.langArray().map((lang, i) => { return <option key={i}>{lang}</option> })
+                }
+              </select>
+            </div>
+            <p className="pill-creation-name">name</p>
+            <input className="pill-creation-name-input" type="text" name="name" value={name} onChange={this.handleChange} />
+            <p className="pill-creation-name">description</p>
+            <textarea className="textarea pill-creation-textarea" rows="1" name="description" value={description} onChange={this.handleChange} placeholder="Write here a small description about your pill"></textarea>
+            <p className="pill-creation-name">level</p>
+            <div className="rating">
+              <input type="radio" name="difficulty" value={5} id="5" onChange={this.handleChange} /><label htmlFor="5">◯</label>
+              <input type="radio" name="difficulty" value={4} id="4" onChange={this.handleChange} /><label htmlFor="4">◯</label>
+              <input type="radio" name="difficulty" value={3} id="3" onClick={this.handleChange} /><label htmlFor="3">◯</label>
+              <input type="radio" name="difficulty" value={2} id="2" onClick={this.handleChange} /><label htmlFor="2">◯</label>
+              <input type="radio" name="difficulty" value={1} id="1" onClick={this.handleChange} /><label htmlFor="1">◯</label>
+            </div>
+            <p className="pill-creation-name">You are going to teach:</p>
+            <input className="pill-creation-name-input" type="text" name="topic" value={topic} onChange={this.handleChange} onKeyDown={this.addTopic} placeholder="write a topic: colors, phrasal verbs..." />
+            <div className="topics-container">
+              {
+                topicsArray
+              }
+            </div>
+            <a href="#0" className="btn-text text-two" onClick={this.savePill}>START&rarr;</a>
           </div>
-          <p>from</p>
-          <select name="fromLanguage" id="fromLanguage" value={fromLanguage} onChange={this.handleChange}>
-            {
-              this.langArray().map((lang, i) => { return <option key={i}>{lang}</option> })
-            }
-          </select>
-          <p>To</p>
-          <select name="toLanguage" id="toLanguage" value={toLanguage} onChange={this.handleChange}>
-            {
-              this.langArray().map((lang, i) => { return <option key={i}>{lang}</option> })
-            }
-          </select>
-          <p>name</p>
-          <input type="text" name="name" value={name} onChange={this.handleChange} placeholder="Pill's name" />
-          <p>description</p>
-          <textarea className="textarea" rows="6" name="description" value={description} onChange={this.handleChange}></textarea>
-          <p>level</p>
-          <div className="rating">
-            <input type="radio" name="difficulty" value={5} id="5" onChange={this.handleChange} /><label htmlFor="5">◯</label>
-            <input type="radio" name="difficulty" value={4} id="4" onChange={this.handleChange} /><label htmlFor="4">◯</label>
-            <input type="radio" name="difficulty" value={3} id="3" onClick={this.handleChange} /><label htmlFor="3">◯</label>
-            <input type="radio" name="difficulty" value={2} id="2" onClick={this.handleChange} /><label htmlFor="2">◯</label>
-            <input type="radio" name="difficulty" value={1} id="1" onClick={this.handleChange} /><label htmlFor="1">◯</label>
-          </div>
-          <p>You are going to teach:</p>
-          <input type="text" name="topic" value={topic} onChange={this.handleChange} onKeyDown={this.addTopic} placeholder="write a topic: colors, phrasal verbs..." />
-          <div>
-            {
-              topicsArray
-            }
-          </div>
-          <a href="#0" className="btn-text" onClick={this.savePill}>START&rarr;</a>
         </div>
         <Navbar />
       </div>

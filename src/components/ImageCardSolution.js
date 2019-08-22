@@ -41,6 +41,7 @@ class ImageCardSolution extends Component {
   }
 
   nextCard = () => {
+    console.log(this.state.score)
     this.props.score(this.state.score);
     this.props.flip();
     this.props.toggle();
@@ -59,7 +60,6 @@ class ImageCardSolution extends Component {
     const classFour = answerFour === correctFour ? 'label-green' : 'label-red';
     const text = this.props.index === this.props.last-1 ? 'FINISH' : 'NEXT';
     const func = this.props.index === this.props.last-1 ? this.props.finish : this.nextCard;
-    console.log(this.props.index, this.props.last-1)
   
     return (
       <div style={{ height: '100%' }}>

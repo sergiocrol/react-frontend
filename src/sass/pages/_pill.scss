@@ -16,6 +16,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 3rem;
 
     h1 {
       font-size: 4rem;
@@ -141,7 +142,7 @@
 }
 
 .score-result {
-  font-size: 6rem;
+  font-size: 4rem;
   color: $color-coral-two;
 }
 
@@ -149,4 +150,70 @@
   background-color: rgba(255, 255, 255, 0.451);
   border: 3px solid white;
   padding: 0 5rem;
+}
+
+.pill-creation-container {
+  width: 90%;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.language-selector-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-new {
+  width: 45%;
+  font-size: 1.7rem;
+  background-color: rgba(255, 255, 255, 0.301);
+}
+
+.pill-creation-textarea{
+  &::placeholder{
+    color: white;
+    font-size: 1.1rem;
+  }
+}
+
+.pill-creation-name{
+  font-size: 1.4rem;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.pill-creation-name-input{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+
+  &::placeholder {
+    color: white;
+    font-size: 1.1rem;
+  }
+}
+
+.text-two {
+  max-width: 15rem;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.topic-new-button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.601);
+  padding: 2px 5px;
+  border-radius: 7px;
+  margin-right: 7px;
+  margin-top: 7px;
+}
+
+.topics-container{
+  display: flex;
+  justify-content: center;
 }

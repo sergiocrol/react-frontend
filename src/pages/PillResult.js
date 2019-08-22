@@ -20,9 +20,9 @@ class PillResult extends Component {
     this.props.currentUser()
       .then(user => {
         user.takenPills.filter(el => {
-          console.log(el.pill === id)
           if (el.pill === id) {
             users.push(el);
+            console.log(users)
             return users;
           } else {
             return null

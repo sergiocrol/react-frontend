@@ -53,7 +53,9 @@ class PillPlay extends Component {
   }
 
   updateScore = (score) => {
+    console.log(score)
     const newScore = this.state.score + score;
+    console.log(newScore)
     this.setState({
       score: newScore
     })

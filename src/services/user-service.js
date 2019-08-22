@@ -9,6 +9,7 @@ class UserService {
   }
 
   updateScore(score, pillId) {
+    console.log(score);
     return this.user.put('/user/score', { score, pillId })
       .then(({ data }) => data);
   }
