@@ -270,4 +270,24 @@
   padding: 5px;
   height: 100%;
   padding-top: 1rem;
+  position: relative;
+
+  .new-pill-float-button {
+    position: fixed;
+    bottom: 6.5rem;
+    right: 2.5rem;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 100px;
+    background-color: $color-coral-two;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    box-shadow: 10px 10px 10px -6px rgba(128,128,128,1);
+    text-decoration: none;
+    cursor: pointer;
+  }
 }

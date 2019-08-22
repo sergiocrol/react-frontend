@@ -69,6 +69,15 @@ class Dashboard extends Component {
     }
   }
 
+  takenPills = () => {
+    if (this.state.user.takenPills !== undefined && Object.keys(this.state.user.takenPills).length > 0) {
+      const el = this.state.user.takenPills.map(el => {
+        return el.name;
+      })
+      return el;
+    }
+  }
+
   render() {
     const createdVisible = this.state.createdVisible ? '' : 'u-display-none';
     const takenVisible = this.state.takenVisible ? '' : 'u-display-none';
@@ -81,6 +90,7 @@ class Dashboard extends Component {
     const scoreImage = this.state.scoreVisible ? score : score2;
     const user = this.state.user;
     console.log(this.pillsContent())
+    console.log(user.takenPills)
     return (
       <div>
         <Header />
@@ -97,6 +107,7 @@ class Dashboard extends Component {
                 <div className="dashboard-content-container">
                   {user.createdPills !== undefined && Object.keys(user.createdPills).length > 0 ? (
                     <section className={`pills-container ${createdVisible}`}>
+                      <Link className="new-pill-float-button" to='/pills/new'>+</Link>
                       {user.createdPills.map(el => {
                         return <PillBox user={el} />
                       })}
@@ -108,13 +119,23 @@ class Dashboard extends Component {
                         <Link to="/pills/new" className="u-margin-top-big" ><img src={add} alt="created pill" /> new pill</Link>
                       </section>
                     )}
+                   {user.takenPills !== undefined && Object.keys(user.takenPills).length > 0 ? (
+                     
+                    <section className={`pills-container ${takenVisible}`}>
+                      <Link className="new-pill-float-button" to='/pills/new'>+</Link>
+                      {user.takenPills.map(el => {
+                        return <PillBox user={el.pill} />
+                      })}
+                    </section>
+                  ) : (
                   <section className={`dashboard-content-container-taken ${takenVisible}`}>
-                    <h2 className="u-margin-top-big">empty</h2>
+                    <h2 className="u-margin-top-small">empty</h2>
                     <img src={emptycourse} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
                     <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
                   </section>
+                   )}
                   <section className={`dashboard-content-container-score ${scoreVisible}`}>
-                    <h2 className="u-margin-top-big">empty</h2>
+                    <h2 className="u-margin-top-small">empty</h2>
                     <img src={emptyscore} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
                     <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
                   </section>
