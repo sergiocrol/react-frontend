@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
+import logo from '../images/hitza.svg';
 import * as Yup from 'yup';
 import withAuth from '../components/withAuth.js';
 
@@ -37,12 +38,15 @@ class Signup extends Component {
   }
 
   render() {
-    if(this.state.profile) {
+    if (this.state.profile) {
       return <Redirect to="/signup/profile" />
     }
     return (
-      <div className="container">
-        <h1>Signup</h1>
+      <div className="login-container u-padding-top-big">
+        <div className="profile-creation-textbox u-margin-top-big">
+          <h1>sign up</h1>
+          <span className="triangle"></span>
+        </div>
         <Formik
           initialValues={{ email: '', password: '', rePassword: '', name: '' }}
           onSubmit={(values, { setSubmitting }) => {
@@ -96,8 +100,8 @@ class Signup extends Component {
                     <div className="input-feedback">{errors.rePassword}</div>
                   )}
                   {this.state.emailExist ? <div className="input-feedback">This email is already in use</div> : null}
-                  <button type='submit' disabled={isSubmitting}>
-                    Signup
+                  <button className="btn-text-login u-margin-top-small u-margin-bottom-medium" type='submit' disabled={isSubmitting}>
+                    Signup &rarr;
                   </button>
                 </form>
               );
@@ -109,6 +113,7 @@ class Signup extends Component {
           <Link to={'/login'}> Login</Link>
         </p>
 
+        <div className="logo-bar"> <img src={logo} alt="logo" /> </div>
       </div>
     )
   }

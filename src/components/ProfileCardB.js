@@ -34,7 +34,7 @@ class ProfileCardB extends Component {
       const arrLang = [...this.state.langAdded];
       arrLang.push(<p className="language-selected" key={lang}>
         <a className="delete-button" href="#0" onClick={() => { this.removeLanguage(lang, text) }}>x</a>
-        {lang}
+        <label className="language-label">{lang}</label>
         <select
           className="selector-language"
           name="level"
@@ -153,7 +153,7 @@ class ProfileCardB extends Component {
   render() {
     return (
       <form className="form" autoComplete="off">
-        <h3 className="language-box-title">Tell everybody what do you want to learn</h3>
+        <h3 className="language-box-title">write about you want to learn</h3>
         <textarea className="textarea" rows="2"></textarea>
         <h3 className="language-box-title">Languages you speak</h3>
         <div className="language-box">
@@ -167,7 +167,7 @@ class ProfileCardB extends Component {
           </div>
           <div className="language-box-counter">
             {
-              this.state.langAdded.length > 0 ? this.state.langAdded : <p className="empty-message">add any language</p>
+              this.state.langAdded.length > 0 ? this.state.langAdded : <p className="empty-message">add languages</p>
             }
           </div>
         </div>

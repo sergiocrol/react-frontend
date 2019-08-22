@@ -30,6 +30,17 @@ class FillProfile extends Component {
     filled: false
   }
 
+  componentDidMount() {
+    this.props.currentUser()
+      .then(user => {
+        console.log(user)
+        this.setState({
+          profileImage: user.profileImage,
+          name: user.name
+        })
+      })
+  }
+
   updateUserInfo = (key, value) => {
     this.setState({
       [key]: value
@@ -72,17 +83,12 @@ class FillProfile extends Component {
         this.setState({
           filled: true
         })
-        
+
       })
-    // AGE
-    // var ageDifMs = Date.now() - new Date(this.state.age);
-    // var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    // console.log(Math.abs(ageDate.getUTCFullYear() - 1970));
   }
 
   render() {
-    console.log(this.props)
-    if(this.state.filled) {return <Redirect to="/home" />};
+    if (this.state.filled) { return <Redirect to="/home" /> };
     const user = this.props.user;
     return (
       <div className="container profile-creation">
@@ -108,7 +114,7 @@ class FillProfile extends Component {
 
         </div>
         <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
-        <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout"/></a>
+        {this.state.index === 1 ? null : <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>}
       </div>
     )
   }

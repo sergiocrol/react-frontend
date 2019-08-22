@@ -15,23 +15,23 @@ class PillResult extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    let users = [];
-    this.props.currentUser()
-      .then(user => {
-        user.takenPills.filter(el => {
-          if (el.pill === id) {
-            users.push(el);
-            console.log(users)
-            return users;
-          } else {
-            return null
-          }
-        })
-        this.setState({
-          score: users[users.length - 1].score
-        })
-      })
+    // const id = this.props.match.params.id;
+    // let users = [];
+    // this.props.currentUser()
+    //   .then(user => {
+    //     user.takenPills.filter(el => {
+    //       if (el.pill === id) {
+    //         users.push(el);
+    //         console.log(users)
+    //         return users;
+    //       } else {
+    //         return null
+    //       }
+    //     })
+    //     this.setState({
+    //       score: users[users.length - 1].score
+    //     })
+    //   })
 
   }
 

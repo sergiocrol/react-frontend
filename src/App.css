@@ -356,6 +356,12 @@ body {
 
 .input-feedback {
   color: red;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.658);
+  font-size: 1.4rem;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin-top: 3px;
 }
 
 .mainLoginInput {
@@ -525,6 +531,16 @@ body {
   transform: translateY(2px);
 }
 
+.btn-text-login {
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.658);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -656,6 +672,7 @@ input[type=date]::-webkit-inner-spin-button {
   color: #F2627A;
   padding-left: 1.5rem;
   margin-left: auto;
+  width: 37%;
 }
 .selector-language option {
   background-color: transparent;
@@ -1098,6 +1115,8 @@ p {
   transition: all 0.2s linear;
   border-left: 1.5rem solid #F2627A;
   padding: 2px 7px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .pill-box-container:hover {
   transform: translateX(1rem);
@@ -1402,6 +1421,7 @@ p {
   border: 1px dashed white;
   max-width: 768px;
   display: flex;
+  color: gray;
 }
 .language-box-select {
   width: 40%;
@@ -1419,7 +1439,7 @@ p {
 }
 .language-box-select div {
   width: 100%;
-  height: 85%;
+  height: calc(100% - 28px);
   background-color: rgba(255, 255, 255, 0.596);
   overflow: auto;
   /* Track */
@@ -1430,6 +1450,7 @@ p {
   transition: all 0.2s linear;
   cursor: pointer;
   border-bottom: 1px solid grey;
+  color: gray;
 }
 .language-box-select div p:hover {
   background-color: rgba(255, 255, 255, 0.74);
@@ -1450,7 +1471,7 @@ p {
   width: 60%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.815);
-  padding: 1.1rem;
+  padding: 5px;
   overflow: auto;
   /* Track */
   /* Handle */
@@ -1471,12 +1492,13 @@ p {
 .language-selected {
   width: 100%;
   display: flex;
+  border-bottom: 1px solid lightgray;
 }
 
 .delete-button {
   display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 25px;
+  height: 25px;
   border-radius: 5px;
   text-decoration: none;
   color: white;
@@ -1503,6 +1525,11 @@ p {
 }
 .logout-button img {
   width: 3rem;
+}
+
+.language-label {
+  display: inline-block;
+  overflow: hidden;
 }
 
 .dashboard-container {
@@ -1971,6 +1998,49 @@ p {
 .topics-container {
   display: flex;
   justify-content: center;
+}
+
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  background: #F17834;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F17834, #F2627A);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F17834, #F2627A);
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.login-container h1 {
+  font-size: 4rem;
+}
+
+.logo-bar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 3em;
+  background-color: rgba(255, 255, 255, 0.827);
+}
+.logo-bar img {
+  height: 6.5em;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=App.css.map */

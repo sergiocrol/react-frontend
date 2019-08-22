@@ -8,6 +8,8 @@
   transition: all .2s linear;
   border-left: 1.5rem solid $color-coral-two;
   padding: 2px 7px;
+  max-width: 500px;
+  margin: 0 auto;
 
   &:hover {
     transform: translateX(1rem);

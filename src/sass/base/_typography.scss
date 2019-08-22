@@ -9,6 +9,12 @@ body {
 
 .input-feedback {
   color: red;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.658);
+  font-size: 1.4rem;
+  padding: 0 5px; 
+  border-radius: 5px;
+  margin-top: 3px;
 }
 
 .mainLoginInput{

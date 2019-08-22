@@ -1,0 +1,42 @@
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  background: $color-orange-two; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, $color-orange-two, $color-coral-two);
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+.logo-bar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 3em;
+  background-color: rgba(255, 255, 255, 0.827);
+
+  img {
+    height: 6.5em;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

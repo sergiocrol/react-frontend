@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
+import logo from '../images/hitza.svg';
 import * as Yup from 'yup';
 import withAuth from '../components/withAuth';
 
@@ -35,8 +36,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Login</h1>
+      <div className="login-container u-padding-top-big">
+        <div className="profile-creation-textbox u-margin-top-big">
+          <h1>login</h1>
+          <span className="triangle"></span>
+        </div>
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values, { setSubmitting }) => {
@@ -50,8 +54,6 @@ class Login extends Component {
               .required("Required"),
             password: Yup.string()
               .required("Required")
-            //.min(8, "Password is too short - should be 8 characters minimum")
-            //.matches(/(?=.*[0-9])/, "Password must contain...")
           })}
         >
           {
@@ -61,7 +63,7 @@ class Login extends Component {
               return (
                 <div>
                   <form className="login-form" onSubmit={handleSubmit}>
-                    <label htmlFor='email' >email:</label>
+                    <label htmlFor='email' >Email:</label>
                     <input id='email' type='text' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur}
                       className={errors.email && touched.email && "error"} />
                     {errors.email && touched.email && (
@@ -74,8 +76,8 @@ class Login extends Component {
                       <div className="input-feedback">{errors.password}</div>
                     )}
                     {this.state.wrongCredentials ? <div className="input-feedback">Wrong email/password</div> : null}
-                    <button type='submit' disabled={isSubmitting}>
-                      Login
+                    <button className="btn-text-login u-margin-top-small u-margin-bottom-medium" type='submit' disabled={isSubmitting}>
+                      Login &rarr;
                   </button>
                   </form>
                 </div>
@@ -84,9 +86,11 @@ class Login extends Component {
           }
         </Formik>
 
-        <p>You don't have an accout yet?
+        <p>Don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
         </p>
+
+        <div className="logo-bar"> <img src={logo} alt="logo" /> </div>
       </div>
     )
   }
