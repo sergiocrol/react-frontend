@@ -28,26 +28,26 @@ class ImageCard extends Component {
     const complete = this.isComplete() ? "button-next-card" : "button-next-card u-is-disabled";
     const response = { type: 'imageEasy', answers: [answerOne, answerTwo, answerThree, answerFour], content: images };
     return (
-      <div>
+      <div style={{ height: '100%' }}>
         <h2 className="card-title play">
           NAME THE IMAGES
         </h2>
         <div className="images-card-container">
           <div>
             <div className="images-card-image-container"> <img src={images[0].imageUrl} alt="one" /> </div>
-            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[1].imageUrl} alt="two" /> </div>
-            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[2].imageUrl} alt="three" /> </div>
-            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[3].imageUrl} alt="four" /> </div>
-            <input name="answerFour" value={answerFour || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerFour" value={answerFour || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
         </div>
         <a href="#0" className={complete} onClick={() => { this.props.flip(response) }}>SOLUTION</a>

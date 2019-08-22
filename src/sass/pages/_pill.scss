@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     h1 {
       font-size: 4rem;
@@ -40,13 +41,28 @@
     &-description {
       width: 90%;
       height: 8rem;
-      max-width: 500px;
+      max-width: 40rem;
       background-color: rgba(255, 255, 255, 0.342);
       border: 1px dashed white;
       border-radius: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+
+      .rate-box {
+        position: absolute;
+        top: -14px;
+        right: -1rem;
+        width: 3rem;
+        height: 3rem;
+        background-color: rgb(78, 148, 78);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
 
       p{
         font-size: 1.4rem;
@@ -60,7 +76,7 @@
     align-items: center;
 
     label {
-      font-size: 8rem;
+      font-size: 6rem;
     }
 
     span {
@@ -110,8 +126,8 @@
 }
 
 .pill-author {
-  width: 90%;
-  max-width: 500px;
+  width: 86%;
+  max-width: 38rem;
   display: flex;
   justify-content: space-between;
 }

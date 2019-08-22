@@ -59,10 +59,21 @@ class PillCreate extends Component {
                     <>
                       <ul>
                         <li>
-                          <button onClick={() => { this.click("hola") }}>Name images</button>
+                          <h2 className="card-title play" style={{ marginBottom: '2px' }}>
+                            SELECT TYPE
+                          </h2>
                         </li>
                         <li>
-                          <button onClick={this.toggle}>Sound test</button>
+                          <button className="pill-type-button" onClick={() => { this.click("hola") }}>Name images</button>
+                        </li>
+                        <li>
+                          <button className="pill-type-button two">Type 2</button>
+                        </li>
+                        <li>
+                          <button className="pill-type-button three">Type 3</button>
+                        </li>
+                        <li>
+                          <button className="pill-type-button four">Type 4</button>
                         </li>
                       </ul>
                       {this.state.index > 1 && <button className="pill-finish-button" onClick={this.finishPill}>-FINISH-</button>}

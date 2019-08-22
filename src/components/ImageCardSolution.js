@@ -62,7 +62,7 @@ class ImageCardSolution extends Component {
     console.log(this.props.index, this.props.last-1)
   
     return (
-      <div>
+      <div style={{ height: '100%' }}>
         <h2 className="card-title play">
           NAME THE IMAGES
           <p className="score">{this.state.score}pts</p>

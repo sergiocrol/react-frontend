@@ -27,10 +27,10 @@ class PillPlay extends Component {
     let newComponentSolution = '';
     switch (response.type) {
       case 'imageEasy':
-        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish}/>
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish} />
         break;
       default:
-        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish}/>
+        newComponentSolution = <ImageCardSolution answers={response.answers} content={response.content} flip={this.flip} toggle={this.toggle} index={this.state.index} last={this.arrayCards.length} score={this.updateScore} finish={this.finish} />
         break;
     }
     this.setState(state => ({
@@ -61,13 +61,13 @@ class PillPlay extends Component {
 
   finish = () => {
     userService.updateScore(this.state.score, this.props.match.params.id)
-    .then(user => {
-      console.log(user);
-    })
+      .then(user => {
+        console.log(user);
+      })
     pillService.countTaken(this.props.match.params.id)
-    .then(pill => {
-      console.log(pill);
-    })
+      .then(pill => {
+        console.log(pill);
+      })
     this.setState({
       redirect: true
     })
@@ -119,13 +119,13 @@ class PillPlay extends Component {
     return (
       <Spring native to={{ transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)` }}>
         {props => (
-          <animated.div className="card" style={props}>
+          <animated.div className="card" style={props} >
             <Transition native unique items={flipped} from={this.hide} enter={this.show} leave={this.hide}>
               {flipped => ({ opacity }) => (
                 <animated.div
                   style={{
                     transform: `rotateY(${flipped ? 180 : 0}deg)`,
-                    opacity: opacity.interpolate({ range: [0, 0.5, 1], output: [0, 0, 1] })
+                    opacity: opacity.interpolate({ range: [0, 0.5, 1], output: [0, 0, 1] }),
                   }}>
                   {flipped ? componentSolution : component}
                 </animated.div>
@@ -139,8 +139,8 @@ class PillPlay extends Component {
 
   render() {
     const { index, redirect, score } = this.state;
-    if(redirect) {return <Redirect to={{pathname: `/pills/${this.props.match.params.id}/play/result`, state: 'dfg'}}/>}
-    
+    if (redirect) { return <Redirect to={{ pathname: `/pills/${this.props.match.params.id}/play/result`, state: 'dfg' }} /> }
+
     return (
       <div>
         <Header />
@@ -155,7 +155,7 @@ class PillPlay extends Component {
             leave={{ opacity: 0, transform: "translate3d(-50%, 0, 0)" }}
           >
             {index => style => (
-              <animated.div style={{ ...style }}>
+              <animated.div style={{ ...style, height: '85%' }}>
                 {React.createElement(this.TestScreen1)}
               </animated.div>
             )}

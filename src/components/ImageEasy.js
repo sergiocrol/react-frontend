@@ -132,7 +132,6 @@ class ImageEasy extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.props.toggle)
   }
 
   isComplete = () => {
@@ -155,7 +154,6 @@ class ImageEasy extends Component {
     const card = { type, pillId, images };
     pillService.newCard(card)
       .then(card => {
-        console.log(card);
         this.props.flip();
         this.props.toggle();
         return this.props.flip;
@@ -163,12 +161,11 @@ class ImageEasy extends Component {
   }
 
   render() {
-    console.log(this.props.props.match.params.id)
     const complete = this.isComplete() ? "button-next-card" : "button-next-card u-is-disabled";
     const completeTwo = this.isComplete() ? this.saveCard : null;
     const { isUploadingOne, isUploadingTwo, isUploadingThree, isUploadingFour, progress, answerOne, answerTwo, answerThree, answerFour } = this.state;
     return (
-      <div>
+      <div style={{ height: '100%' }}>
         <h2 className="card-title">
           <a href="#0" className="button-back-card" onClick={this.props.flip}>&#60; back</a>
           NAME THE IMAGES
@@ -195,7 +192,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerOne" value={answerOne || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <CustomUploadButton
@@ -218,7 +215,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerTwo" value={answerTwo || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <CustomUploadButton
@@ -241,7 +238,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input name="answerThree" value={answerThree || ''} type="text" className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
           <div>
             <CustomUploadButton
@@ -264,7 +261,7 @@ class ImageEasy extends Component {
                 )
               }
             </CustomUploadButton>
-            <input type="text" name="answerFour" value={answerFour || ''} className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off"/>
+            <input type="text" name="answerFour" value={answerFour || ''} className="images-card-answer-input" onChange={this.handleChange} placeholder="ANSWER" autoComplete="off" />
           </div>
         </div>
         <a href="#0" className={complete} onClick={completeTwo}>NEXT CARD</a>
