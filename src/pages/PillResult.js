@@ -16,23 +16,22 @@ class PillResult extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    let score = 0;
     let users = [];
     this.props.currentUser()
-    .then(user => {
-      user.takenPills.filter(el => {
-        console.log(el.pill === id)
-        if(el.pill === id) {
-          users.push(el);
-          return users;
-        } else {
-          return null
-        }
+      .then(user => {
+        user.takenPills.filter(el => {
+          console.log(el.pill === id)
+          if (el.pill === id) {
+            users.push(el);
+            return users;
+          } else {
+            return null
+          }
+        })
+        this.setState({
+          score: users[users.length - 1].score
+        })
       })
-      this.setState({
-        score: users[users.length-1].score
-      })
-    })
 
   }
 
@@ -54,14 +53,14 @@ class PillResult extends Component {
 
 
   render() {
-    if(this.state.redirect) {return <Redirect to='/home'/>}
+    if (this.state.redirect) { return <Redirect to='/home' /> }
     return (
       <div className="container-pill u-padding-top-big">
         <Header />
         <div className="container-content">
           <h1>Well done!</h1>
           <h3 className="u-margin-bottom-medium">You have finished one Pill!</h3>
-          <img className="result-image u-margin-bottom-medium" src={win} alt="score"/>
+          <img className="result-image u-margin-bottom-medium" src={win} alt="score" />
           <div className="score-container">
             <p className="score-title">your score:  </p>
             <p className="score-result">{this.state.score}</p>

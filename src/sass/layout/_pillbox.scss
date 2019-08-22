@@ -1,14 +1,72 @@
 .pill-box-container {
   width: 100%;
-  height: 100%;
   color: black;
   height: 10rem;
+  border: 1px solid lightgray;
+  margin-bottom: .7rem;
+  box-shadow: -1px 6px 9px -2px rgba(168,168,168,1);
+  transition: all .2s linear;
+  border-left: 1.5rem solid $color-coral-two;
+  padding: 2px 7px;
+
+  &:hover {
+    transform: translateX(1rem);
+  }
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+
+    .title-span {
+      color: $color-red-dark;
+      font-size: 1.8rem;
+    }
+
+    div {
+      font-size: 1.3rem;
+
+      span {
+        color: $color-coral-two;
+      }
+    }
+  }
+
+  &-description {
+    text-align: left;
+    font-size: 1.1rem;
+    color: rgb(36, 36, 36);
+  }
+
+  &-level {
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .l {
+      display: flex;
+      align-items: center;
+    }
+
+    label {
+      color: $color-coral-two;
+      font-size: 3rem;
+    }
+
+    .rate-box {
+      background-color: $color-orange-two;
+      padding: 3px;
+      width: 3rem;
+      height: 3rem;
+      color: white;
+      font-weight: 500;
+      border-radius: 5px;
+    }
+  }
 }
 
-.pills-container {
-  width: 100%;
-  height: auto;
-  max-width: 768px;
-  margin: 0 auto;
-  border: 0;
+.result-title {
+  color: rgb(61, 60, 60);
+  font-size: 2.3rem;
+  text-align: left;
 }

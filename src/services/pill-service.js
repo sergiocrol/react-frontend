@@ -32,7 +32,17 @@ class PillService {
 
   rating(pillId, rate) {
     return this.pill.put(`/pills/pill/${pillId}/rate`, { rate })
-      .then(({data}) => data)
+      .then(({ data }) => data)
+  }
+
+  getPillsByRate() {
+    return this.pill.get('/pills/rate')
+      .then(({ data }) => data)
+  }
+
+  getPillsByLevel(difficulty, fromLanguage, toLanguage, topics) {
+    return this.pill.post('/pills/level', { difficulty, fromLanguage, toLanguage, topics })
+      .then(({ data }) => data)
   }
 
 }

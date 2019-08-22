@@ -10,7 +10,7 @@
 
   .container-content {
     width: 90%;
-    height: 100%;
+    height: calc(100% - 5.5rem);
     max-width: 768px;
     display: flex;
     flex-direction: column;
@@ -39,9 +39,7 @@
 
     &-description {
       width: 90%;
-      height: 15rem;
-      font-size: 1.8rem;
-      font-weight: 600;
+      height: 8rem;
       max-width: 500px;
       background-color: rgba(255, 255, 255, 0.342);
       border: 1px dashed white;
@@ -49,6 +47,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      p{
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
     }
   }
 

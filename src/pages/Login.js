@@ -34,7 +34,6 @@ class Login extends Component {
   }
 
   render() {
-  console.log(this.props)
     return (
       <div className="container">
         <h1>Login</h1>

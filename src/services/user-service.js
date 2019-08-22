@@ -8,10 +8,10 @@ class UserService {
     })
   }
 
-updateScore(score, pillId) {
-  return this.user.put('/user/score', { score, pillId })
-  .then(({data}) => data);
-}
+  updateScore(score, pillId) {
+    return this.user.put('/user/score', { score, pillId })
+      .then(({ data }) => data);
+  }
 
 }
 
