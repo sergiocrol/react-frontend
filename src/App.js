@@ -23,17 +23,17 @@ import AuthProvider from './contexts/auth-context.js';
 import './App.css';
 
 const config = {
-  apiKey: "AIzaSyDYjroyVUMiI8GrLAZowsCndKIA6OtXJPk",
-  authDomain: "upload-react-images.firebaseapp.com",
-  storageBucket: "gs://upload-react-images.appspot.com/"
+  apiKey: "AIzaSyADF44NqjmEwJuxTkLIewfTLEj_Z2ZYK4c",
+  authDomain: "hitza-97861.firebaseapp.com",
+  storageBucket: "gs://hitza-97861.appspot.com"
 };
 firebase.initializeApp(config);
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <AuthProvider>
+      <AuthProvider>
+        <Router>
           <div>
             <Switch>
               <AnonRoute exact path="/" component={Welcome} />
@@ -50,8 +50,9 @@ class App extends Component {
               <PrivateRoute exact path="/pills/:id/play/result" component={PillResult} />
             </Switch>
           </div>
-        </AuthProvider>
-      </Router>
+        </Router>
+      </AuthProvider>
+
     )
   }
 }

@@ -59,24 +59,26 @@ class Login extends Component {
               const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
               return (
-                <form className="login-form" onSubmit={handleSubmit}>
-                  <label htmlFor='email' >email:</label>
-                  <input id='email' type='text' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur}
-                    className={errors.email && touched.email && "error"} />
-                  {errors.email && touched.email && (
-                    <div className="input-feedback">{errors.email}</div>
-                  )}
-                  <label htmlFor='password'>Password:</label>
-                  <input id='password' type='password' name='password' value={values.password} onChange={handleChange} onBlur={handleBlur}
-                    className={errors.password && touched.password && "error"} />
-                  {errors.password && touched.password && (
-                    <div className="input-feedback">{errors.password}</div>
-                  )}
-                  {this.state.wrongCredentials ? <div className="input-feedback">Wrong email/password</div> : null}
-                  <button type='submit' disabled={isSubmitting}>
-                    Login
+                <div>
+                  <form className="login-form" onSubmit={handleSubmit}>
+                    <label htmlFor='email' >email:</label>
+                    <input id='email' type='text' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur}
+                      className={errors.email && touched.email && "error"} />
+                    {errors.email && touched.email && (
+                      <div className="input-feedback">{errors.email}</div>
+                    )}
+                    <label htmlFor='password'>Password:</label>
+                    <input id='password' type='password' name='password' value={values.password} onChange={handleChange} onBlur={handleBlur}
+                      className={errors.password && touched.password && "error"} />
+                    {errors.password && touched.password && (
+                      <div className="input-feedback">{errors.password}</div>
+                    )}
+                    {this.state.wrongCredentials ? <div className="input-feedback">Wrong email/password</div> : null}
+                    <button type='submit' disabled={isSubmitting}>
+                      Login
                   </button>
-                </form>
+                  </form>
+                </div>
               );
             }
           }
