@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
 import ProfileCard from '../components/ProfileCard';
 import ProfileCardB from '../components/ProfileCardB';
+import logout from '../images/logout.svg';
 import { Transition, animated } from 'react-spring/renderprops'
 
 
@@ -107,7 +108,7 @@ class FillProfile extends Component {
 
         </div>
         <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
-        <a href="#0" onClick={this.handleLogout}>Logout</a>
+        <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout"/></a>
       </div>
     )
   }

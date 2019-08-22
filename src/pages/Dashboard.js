@@ -89,8 +89,6 @@ class Dashboard extends Component {
     const takenImage = this.state.takenVisible ? taken : taken2;
     const scoreImage = this.state.scoreVisible ? score : score2;
     const user = this.state.user;
-    console.log(this.pillsContent())
-    console.log(user.takenPills)
     return (
       <div>
         <Header />
@@ -108,8 +106,8 @@ class Dashboard extends Component {
                   {user.createdPills !== undefined && Object.keys(user.createdPills).length > 0 ? (
                     <section className={`pills-container ${createdVisible}`}>
                       <Link className="new-pill-float-button" to='/pills/new'>+</Link>
-                      {user.createdPills.map(el => {
-                        return <PillBox user={el} />
+                      {user.createdPills.map((el, i) => {
+                        return <PillBox key={i} user={el} />
                       })}
                     </section>
                   ) : (
@@ -123,8 +121,8 @@ class Dashboard extends Component {
                      
                     <section className={`pills-container ${takenVisible}`}>
                       <Link className="new-pill-float-button" to='/pills/new'>+</Link>
-                      {user.takenPills.map(el => {
-                        return <PillBox user={el.pill} />
+                      {user.takenPills.map((el,i) => {
+                        return <PillBox key={i} user={el.pill} />
                       })}
                     </section>
                   ) : (

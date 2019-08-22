@@ -154,7 +154,7 @@ class ProfileCardB extends Component {
     return (
       <form className="form" autoComplete="off">
         <h3 className="language-box-title">Tell everybody what do you want to learn</h3>
-        <textarea className="textarea" rows="6"></textarea>
+        <textarea className="textarea" rows="2"></textarea>
         <h3 className="language-box-title">Languages you speak</h3>
         <div className="language-box">
           <div className="language-box-select">

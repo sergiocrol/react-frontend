@@ -5,6 +5,7 @@ import cloudImage from '../images/cloud.svg';
 import location from '../images/location.svg';
 import cake from '../images/cake.svg';
 import profile from '../images/profile.svg';
+import logout from '../images/logout.svg';
 import firebase from "firebase";
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 const gender = require('../helpers/gender');
@@ -126,7 +127,7 @@ class Profile extends Component {
             </div>
           </form>
 
-          <a href="#0" onClick={this.handleLogout}>Logout</a>
+          <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout"/></a>
         </div>
       </div >
     )
