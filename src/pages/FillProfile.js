@@ -10,18 +10,18 @@ import { Transition, animated } from 'react-spring/renderprops'
 class FillProfile extends Component {
   pages = [
     style => (
-      <animated.div style={{ ...style }}><ProfileCard props={this.props} info={this.updateUserInfo} /></animated.div>
+      <animated.div style={{ ...style }}><ProfileCard userInfo={this.userInfo} info={this.updateUserInfo} /></animated.div>
     ),
     style => (
-      <animated.div style={{ ...style }}><ProfileCardB props={this.props} info={this.updateUserInfo} /></animated.div>
+      <animated.div style={{ ...style }}><ProfileCardB props={this.state} info={this.updateUserInfo} /></animated.div>
     )
   ]
 
   state = {
     next: false,
     index: 0,
-    profileImage: this.props.user.profileImage,
-    name: this.props.user.name,
+    profileImage: '',
+    name: '',
     location: '',
     age: '',
     gender: '',
@@ -30,15 +30,26 @@ class FillProfile extends Component {
     filled: false
   }
 
-  componentDidMount() {
-    this.props.currentUser()
-      .then(user => {
-        console.log(user)
-        this.setState({
-          profileImage: user.profileImage,
-          name: user.name
-        })
-      })
+  // componentDidMount() {
+  //   this.props.currentUser()
+  //     .then(user => {
+  //       this.setState({
+  //         name: user.name,
+  //       })
+  //       console.log(user)
+  //     })
+  // }
+
+  userInfo = async () => {
+    const user = await this.props.currentUser();
+    this.setState({
+      profileImage: user.profileImage,
+      name: user.name,
+      location: user.location,
+      age: user.age,
+      gender: user.gender,
+    })
+    return user;
   }
 
   updateUserInfo = (key, value) => {
@@ -49,6 +60,7 @@ class FillProfile extends Component {
   }
 
   toggle = e => {
+    this.save(2);
     this.setState(state => ({
       index: state.index === 1 ? 0 : state.index + 1,
     }))
@@ -67,7 +79,7 @@ class FillProfile extends Component {
       })
   }
 
-  save = () => {
+  save = (end) => {
     let { name, profileImage, location, age, gender, langLearnLevel, langLevel } = this.state;
     age = new Date(age);
     let nativeLanguage = [];
@@ -78,23 +90,25 @@ class FillProfile extends Component {
 
     const user = { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages };
 
-    this.props.updateUser(user)
-      .then(() => {
-        this.setState({
-          filled: true
+      this.props.updateUser(user)
+        .then(() => {
+          if(end === 1) {
+            this.setState({
+              filled: true
+            })
+          }
         })
 
-      })
   }
 
   render() {
     if (this.state.filled) { return <Redirect to="/home" /> };
-    const user = this.props.user;
+    const name = this.state.name;
     return (
       <div className="container profile-creation">
         <div className="profile-container">
           <div className="profile-creation-textbox">
-            <h1>Welcome {user.name}</h1>
+            <h1>Welcome {name}</h1>
             <p>tell us about you :)</p>
             <span className="triangle"></span>
           </div>
@@ -113,7 +127,7 @@ class FillProfile extends Component {
           </Transition>
 
         </div>
-        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
+        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save(true) : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
         {this.state.index === 1 ? null : <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>}
       </div>
     )

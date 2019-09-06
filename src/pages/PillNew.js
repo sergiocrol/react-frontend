@@ -69,7 +69,6 @@ class PillNew extends Component {
     const pill = { name, fromLanguage, toLanguage, author, date, difficulty, description, topics };
     pillService.newPill(pill)
       .then(pill => {
-        console.log(pill);
         this.setState({
           redirect: true,
           pill: pill

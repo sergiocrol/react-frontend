@@ -53,9 +53,8 @@ class PillPlay extends Component {
   }
 
   updateScore = (score) => {
-    console.log(score)
     const newScore = this.state.score + score;
-    console.log(newScore)
+
     this.setState({
       score: newScore
     })
@@ -64,11 +63,11 @@ class PillPlay extends Component {
   finish = () => {
     userService.updateScore(this.state.score, this.props.match.params.id)
       .then(user => {
-        console.log(user);
+
       })
     pillService.countTaken(this.props.match.params.id)
       .then(pill => {
-        console.log(pill);
+
       })
     this.setState({
       redirect: true

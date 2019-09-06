@@ -14,29 +14,7 @@ class PillResult extends Component {
     redirect: false
   }
 
-  componentDidMount() {
-    // const id = this.props.match.params.id;
-    // let users = [];
-    // this.props.currentUser()
-    //   .then(user => {
-    //     user.takenPills.filter(el => {
-    //       if (el.pill === id) {
-    //         users.push(el);
-    //         console.log(users)
-    //         return users;
-    //       } else {
-    //         return null
-    //       }
-    //     })
-    //     this.setState({
-    //       score: users[users.length - 1].score
-    //     })
-    //   })
-
-  }
-
   handleChange = (event) => {
-    console.log(event.target.value);
     this.setState({
       rate: event.target.value
     })

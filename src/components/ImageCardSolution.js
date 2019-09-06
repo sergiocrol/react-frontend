@@ -18,10 +18,10 @@ class ImageCardSolution extends Component {
       answerThree: this.props.answers[2],
       answerFour: this.props.answers[3],
     })
-    if(this.props.answers[0] === this.props.content[0].answer[0]) {score += 10}
-    if(this.props.answers[1] === this.props.content[1].answer[0]) {score += 10}
-    if(this.props.answers[2] === this.props.content[2].answer[0]) {score += 10}
-    if(this.props.answers[3] === this.props.content[3].answer[0]) {score += 10}
+    if (this.props.answers[0] === this.props.content[0].answer[0]) { score += 10 }
+    if (this.props.answers[1] === this.props.content[1].answer[0]) { score += 10 }
+    if (this.props.answers[2] === this.props.content[2].answer[0]) { score += 10 }
+    if (this.props.answers[3] === this.props.content[3].answer[0]) { score += 10 }
     this.setState({
       score: score
     })
@@ -41,7 +41,6 @@ class ImageCardSolution extends Component {
   }
 
   nextCard = () => {
-    console.log(this.state.score)
     this.props.score(this.state.score);
     this.props.flip();
     this.props.toggle();
@@ -58,9 +57,9 @@ class ImageCardSolution extends Component {
     const classTwo = answerTwo === correctTwo ? 'label-green' : 'label-red';
     const classThree = answerThree === correctThree ? 'label-green' : 'label-red';
     const classFour = answerFour === correctFour ? 'label-green' : 'label-red';
-    const text = this.props.index === this.props.last-1 ? 'FINISH' : 'NEXT';
-    const func = this.props.index === this.props.last-1 ? this.props.finish : this.nextCard;
-  
+    const text = this.props.index === this.props.last - 1 ? 'FINISH' : 'NEXT';
+    const func = this.props.index === this.props.last - 1 ? this.props.finish : this.nextCard;
+
     return (
       <div style={{ height: '100%' }}>
         <h2 className="card-title play">

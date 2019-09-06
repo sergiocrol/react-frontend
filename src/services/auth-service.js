@@ -33,7 +33,6 @@ class AuthService {
   currentUser() {
     return this.auth.get('/auth/current')
       .then(({ data }) => {
-        console.log(data);
         return data;
       })
   }

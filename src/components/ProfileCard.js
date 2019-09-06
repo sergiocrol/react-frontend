@@ -11,12 +11,23 @@ class ProfileCard extends Component {
   state = {
     isUploading: false,
     progress: 0,
-    profileImage: this.props.props.user.profileImage,
-    name: this.props.props.user.name,
-    location: "",
+    profileImage: '',
+    name: '',
+    location: '',
     age: "Birthday",
     gender: 'Female'
   };
+
+  async componentDidMount() {
+    let { name, profileImage, location, age, gender } = await this.props.userInfo();
+    this.setState({
+      name,
+      profileImage,
+      location,
+      age,
+      gender
+    })
+  }
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
 
@@ -27,7 +38,6 @@ class ProfileCard extends Component {
 
   handleUploadError = error => {
     this.setState({ isUploading: false });
-    console.error(error);
   };
 
   handleUploadSuccess = filename => {
@@ -46,7 +56,6 @@ class ProfileCard extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.props)
     this.props.info(name, value);
   }
 
@@ -83,21 +92,21 @@ class ProfileCard extends Component {
             location
             </div>
           <img src={location} alt="location" />
-          <input className="input-no-line" type="text" name="location" value={this.state.location} onChange={this.handleChange} placeholder="e.g. Barcelona" />
+          <input className="input-no-line" type="text" name="location" value={this.state.location || ''} onChange={this.handleChange} placeholder="e.g. Barcelona" />
         </div>
         <div className="input-icons input-birthday">
           <div className="tag">
             birthday
             </div>
           <img src={cake} alt="location" />
-          <input id="input-birthday" className="input-no-line" type="date" name="age" value={this.state.age} onChange={this.handleChange} placeholder="Birthdate" required="required" />
+          <input id="input-birthday" className="input-no-line" type="date" name="age" value={this.state.age.slice(0,10) || ''} onChange={this.handleChange} placeholder="Birthdate" required="required" />
         </div>
         <div className="input-icons input-birthday">
           <div className="tag">
             gender
           </div>
           <img src={profile} alt="location" />
-          <select className="selector" name="gender" onChange={this.handleChange}>
+          <select className="selector" name="gender" value={this.state.gender} onChange={this.handleChange}>
             {gender.map((gen, i) => { return <option key={i}>{gen}</option> })}
           </select>
         </div>

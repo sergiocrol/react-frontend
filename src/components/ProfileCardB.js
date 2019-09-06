@@ -29,7 +29,6 @@ class ProfileCardB extends Component {
   }
 
   addLanguage = (lang, text) => {
-    console.log(text);
     if (text === 'speak') {
       const arrLang = [...this.state.langAdded];
       arrLang.push(<p className="language-selected" key={lang}>
@@ -129,7 +128,6 @@ class ProfileCardB extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     this.props.info(name, value);
-    console.log(this.state.level)
 
     if (text === 'speak') {
       const newArray = this.langArray('speak').filter(name => { return name.props.children.toLowerCase().includes(this.state.search.trim().toLowerCase()) ? name : null })
@@ -145,9 +143,6 @@ class ProfileCardB extends Component {
     this.setState({
       level: value
     })
-    // setTimeout(() => {
-    //   console.log(this.state.level)
-    // }, 1000)
   }
 
   render() {

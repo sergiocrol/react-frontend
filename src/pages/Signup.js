@@ -39,7 +39,7 @@ class Signup extends Component {
 
   render() {
     if (this.state.profile) {
-      return <Redirect to="/signup/profile" />
+      return <Redirect to="/profile" />
     }
     return (
       <div className="login-container u-padding-top-big">

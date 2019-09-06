@@ -5,7 +5,6 @@ import firebase from "firebase";
 import PrivateRoute from './components/PrivateRoute.js';
 import AnonRoute from './components/AnonRoute.js';
 
-import Profile from './pages/Profile';
 import FillProfile from './pages/FillProfile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -38,10 +37,10 @@ class App extends Component {
             <Switch>
               <AnonRoute exact path="/" component={Welcome} />
               <AnonRoute exact path="/signup" component={Signup} />
-              <PrivateRoute exact path="/signup/profile" component={FillProfile} />
+              <PrivateRoute exact path="/profile" component={FillProfile} />
               <AnonRoute exact path="/login" component={Login} />
               <Route exact path="/home" component={Home} />
-              <PrivateRoute exact path="/profile" component={Profile} />
+              {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
               <Route exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/pills/:id/create" component={PillCreate} />
               <PrivateRoute exact path="/pills/new" component={PillNew} />

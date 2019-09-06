@@ -27,7 +27,6 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.currentUser()
       .then(user => {
-        console.log(user)
         this.setState({
           user: user
         })
@@ -117,29 +116,27 @@ class Dashboard extends Component {
                         <Link to="/pills/new" className="u-margin-top-big" ><img src={add} alt="created pill" /> new pill</Link>
                       </section>
                     )}
-                   {user.takenPills !== undefined && Object.keys(user.takenPills).length > 0 ? (
-                     
+                  {user.takenPills !== undefined && Object.keys(user.takenPills).length > 0 ? (
+
                     <section className={`pills-container ${takenVisible}`}>
                       <Link className="new-pill-float-button" to='/pills/new'>+</Link>
-                      {user.takenPills.map((el,i) => {
+                      {user.takenPills.map((el, i) => {
                         return <PillBox key={i} user={el.pill} />
                       })}
                     </section>
                   ) : (
-                  <section className={`dashboard-content-container-taken ${takenVisible}`}>
-                    <h2 className="u-margin-top-small">empty</h2>
-                    <img src={emptycourse} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
-                    <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
-                  </section>
-                   )}
+                      <section className={`dashboard-content-container-taken ${takenVisible}`}>
+                        <h2 className="u-margin-top-small">empty</h2>
+                        <img src={emptycourse} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
+                        <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
+                      </section>
+                    )}
                   <section className={`dashboard-content-container-score ${scoreVisible}`}>
                     <h2 className="u-margin-top-small">empty</h2>
                     <img src={emptyscore} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
                     <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
                   </section>
                 </div>
-                {/* <h3>Dashboard</h3>
-                <Link to={{ pathname: "/pills/new", props: this.props }}>+ new pill</Link> */}
               </div>
             ) : (
                 <div className="not-logged-message">

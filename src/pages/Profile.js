@@ -31,7 +31,6 @@ class Profile extends Component {
 
   handleUploadError = error => {
     this.setState({ isUploading: false });
-    console.error(error);
   };
 
   handleUploadSuccess = filename => {
@@ -62,7 +61,6 @@ class Profile extends Component {
     this.setState({
       secondPage: true
     })
-    console.log(this.state.location)
   }
 
   render() {
@@ -127,7 +125,7 @@ class Profile extends Component {
             </div>
           </form>
 
-          <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout"/></a>
+          <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>
         </div>
       </div >
     )

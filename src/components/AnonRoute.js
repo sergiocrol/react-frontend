@@ -11,7 +11,7 @@ const AnonRoute = (props) => {
           return <Component {...props} />
         }}
         {...rest}
-      /> : props.location.pathname === '/signup' ? <Redirect to='/signup/profile' /> : <Redirect to='/home' />}
+      /> : props.location.pathname === '/signup' ? <Redirect to='/profile' /> : <Redirect to='/home' />}
     </>
 
 

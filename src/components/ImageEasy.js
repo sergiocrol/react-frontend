@@ -76,8 +76,6 @@ class ImageEasy extends Component {
         this.setState({ isUploadingFour: false });
         break;
     }
-    //this.setState({ isUploadingOne: false });
-    console.error(error);
   };
 
   handleUploadSuccess = filename => {
