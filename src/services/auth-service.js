@@ -38,8 +38,8 @@ class AuthService {
   }
 
   updateUser(user) {
-    const { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages } = user;
-    return this.auth.put('/auth/profile', { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages })
+    const { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages, description } = user;
+    return this.auth.put('/auth/profile', { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages, description })
       .then(response => response.data)
   }
 }

@@ -23,14 +23,16 @@ class ProfileCardLang extends Component {
     spokenLanguages: [],
     learningLanguages: [],
     searchSpeak: '',
-    searchLearn: ''
+    searchLearn: '',
+    description: ''
   }
 
   async componentDidMount() {
-    let { spokenLanguages, learningLanguages } = await this.props.userInfo();
+    let { spokenLanguages, learningLanguages, description } = await this.props.userInfo();
     this.setState({
       spokenLanguages,
-      learningLanguages
+      learningLanguages,
+      description
     })
   }
 
@@ -84,7 +86,8 @@ class ProfileCardLang extends Component {
         <select
           className="selector-language"
           name="level"
-          value={"intermediate"}>
+          value={language.rate}
+          onChange={e => { this.changeLevel(e, language.lang, langBox) }}>
           <option value="native">native</option>
           <option value="elementary">elementary</option>
           <option value="intermediate">intermediate</option>
@@ -94,8 +97,23 @@ class ProfileCardLang extends Component {
     )
   }
 
-  changeLevel = () => {
-
+  changeLevel = (event, language, langBox) => {
+    const { spokenLanguages, learningLanguages } = this.state;
+    if (langBox === 'speak') {
+      let newSpokenLanguages = [...spokenLanguages];
+      newSpokenLanguages = newSpokenLanguages.map(lang => language === lang.lang ? { lang: lang.lang, rate: event.target.value } : lang);
+      this.setState({
+        spokenLanguages: newSpokenLanguages
+      })
+      this.props.info("spokenLanguages", newSpokenLanguages);
+    } else {
+      let newLearningLanguages = [...learningLanguages];
+      newLearningLanguages = newLearningLanguages.map(lang => language === lang.lang ? { lang: lang.lang, rate: event.target.value } : lang);
+      this.setState({
+        learningLanguages: newLearningLanguages
+      })
+      this.props.info("learningLanguages", newLearningLanguages);
+    }
   }
 
 
@@ -113,15 +131,11 @@ class ProfileCardLang extends Component {
     }
   }
 
-  handleSelectSpeak = event => {
-
-  }
-
   render() {
     return (
       <form className="form" autoComplete="off">
         <h3 className="language-box-title">write about you want to learn</h3>
-        <textarea className="textarea" rows="2"></textarea>
+        <input type="text" className="textarea" name="description" rows="2" value={this.state.description || ''} onChange={this.handleChange} />
         <h3 className="language-box-title">Languages you speak</h3>
         <div className="language-box">
           <div className="language-box-select">

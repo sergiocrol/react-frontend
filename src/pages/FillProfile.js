@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
 import ProfileCard from '../components/ProfileCard';
-//import ProfileCardB from '../components/ProfileCardB';
 import ProfileCardLang from '../components/ProfileCardLang.js';
 import logout from '../images/logout.svg';
 import { Transition, animated } from 'react-spring/renderprops'
@@ -31,6 +30,7 @@ class FillProfile extends Component {
     nativeLanguage: [],
     spokenLanguages: [],
     learningLanguages: [],
+    description: '',
     filled: false
   }
 
@@ -44,7 +44,8 @@ class FillProfile extends Component {
       gender: user.gender,
       nativeLanguage: user.nativeLanguage,
       spokenLanguages: user.spokenLanguages,
-      learningLanguages: user.learningLanguages
+      learningLanguages: user.learningLanguages,
+      description: user.description
     })
     return user;
   }
@@ -76,13 +77,13 @@ class FillProfile extends Component {
   }
 
   save = (end) => {
-    let { name, profileImage, location, age, gender, langLearnLevel, langLevel, nativeLanguage, spokenLanguages, learningLanguages } = this.state;
+    let { name, profileImage, location, age, gender, langLearnLevel, langLevel, nativeLanguage, spokenLanguages, learningLanguages, description } = this.state;
     age = new Date(age);
 
     langLevel.forEach(lang => { spokenLanguages.push({ lang: lang.language, rate: lang.level }) });
     langLearnLevel.forEach(lang => { learningLanguages.push({ lang: lang.language, rate: lang.level }) });
 
-    const user = { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages };
+    const user = { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages, description };
     this.props.updateUser(user)
       .then(() => {
         if (end) {
