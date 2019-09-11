@@ -24,11 +24,34 @@ class ProfileCardB extends Component {
     langLearnArray: this.langArray('learn'),
     langLearnAdded: [],
     langLearnLevel: [],
+    nativeLanguage: [],
     search: '',
     level: 'native'
   }
 
-  addLanguage = (lang, text) => {
+  async componentDidMount() {
+    let { nativeLanguage, spokenLanguages, learningLanguages } = await this.props.userInfo();
+    const newLangLevel = [...spokenLanguages];
+    const newLearnLevel = [...learningLanguages]
+    this.setState({
+      langLevel: newLangLevel,
+      langLearnLevel: newLearnLevel
+    })
+    learningLanguages.forEach(lang => {
+      this.addLanguage(lang.lang, 'learn', lang.level)
+    })
+    nativeLanguage.forEach(lang => {
+      if (lang != null) {
+        this.addLanguage(lang, 'speak', 'native')
+      }
+    })
+    spokenLanguages.forEach(lang => {
+      this.addLanguage(lang.lang, 'sepak', lang.level)
+    })
+  }
+
+
+  addLanguage = (lang, text, level) => {
     if (text === 'speak') {
       const arrLang = [...this.state.langAdded];
       arrLang.push(<p className="language-selected" key={lang}>
@@ -37,7 +60,7 @@ class ProfileCardB extends Component {
         <select
           className="selector-language"
           name="level"
-          value={this.state.level}
+          value={level}
           onChange={(e) => { this.handleSelectSpeak(e); this.changeLevel(lang, text, e) }}>
           <option value="native">native</option>
           <option value="elementary">elementary</option>
@@ -46,7 +69,8 @@ class ProfileCardB extends Component {
         </select>
       </p>);
       const arrLevel = [...this.state.langLevel];
-      arrLevel.push({ language: lang, level: 'native' });
+      arrLevel.push({ language: lang, level: level || 'native' });
+      console.log(arrLevel);
       this.props.info("langLevel", arrLevel);
 
       this.setState({
@@ -55,9 +79,9 @@ class ProfileCardB extends Component {
       })
     } else {
       const arrLang = [...this.state.langLearnAdded];
-      arrLang.push(<p className="language-selected" key={lang}> <a className="delete-button" href="#0" onClick={() => { this.removeLanguage(lang, text) }}>x</a> {lang} <select className="selector-language" name="level" value={this.state.level} onChange={(e) => { this.handleChange(e, text); this.changeLevel(lang, text, e) }}><option value="native">native</option><option value="elementary">elementary</option><option value="intermediate">intermediate</option><option value="advanced">advanced</option></select> </p>);
+      arrLang.push(<p className="language-selected" key={lang}> <a className="delete-button" href="#0" onClick={() => { this.removeLanguage(lang, text) }}>x</a> {lang} <select className="selector-language" name="level" value={level} onChange={(e) => { this.handleChange(e, text); this.changeLevel(lang, text, e) }}><option value="native">native</option><option value="elementary">elementary</option><option value="intermediate">intermediate</option><option value="advanced">advanced</option></select> </p>);
       const arrLevel = [...this.state.langLearnLevel];
-      arrLevel.push({ language: lang, level: 'native' });
+      arrLevel.push({ language: lang, level: (level || 'native') });
       this.props.info("langLearnLevel", arrLevel);
 
       this.setState({
@@ -74,6 +98,7 @@ class ProfileCardB extends Component {
       arrLang.splice(keys.indexOf(lang), 1);
       const arrLevel = [...this.state.langLevel];
       arrLevel.splice(keys.indexOf(lang), 1);
+      console.log(arrLevel);
       this.props.info("langLevel", arrLevel);
 
       this.setState({

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
 import ProfileCard from '../components/ProfileCard';
-import ProfileCardB from '../components/ProfileCardB';
+//import ProfileCardB from '../components/ProfileCardB';
+import ProfileCardLang from '../components/ProfileCardLang.js';
 import logout from '../images/logout.svg';
 import { Transition, animated } from 'react-spring/renderprops'
 
@@ -13,7 +14,7 @@ class FillProfile extends Component {
       <animated.div style={{ ...style }}><ProfileCard userInfo={this.userInfo} info={this.updateUserInfo} /></animated.div>
     ),
     style => (
-      <animated.div style={{ ...style }}><ProfileCardB props={this.state} info={this.updateUserInfo} /></animated.div>
+      <animated.div style={{ ...style }}><ProfileCardLang userInfo={this.userInfo} info={this.updateUserInfo} /></animated.div>
     )
   ]
 
@@ -27,18 +28,11 @@ class FillProfile extends Component {
     gender: '',
     langLearnLevel: [],
     langLevel: [],
+    nativeLanguage: [],
+    spokenLanguages: [],
+    learningLanguages: [],
     filled: false
   }
-
-  // componentDidMount() {
-  //   this.props.currentUser()
-  //     .then(user => {
-  //       this.setState({
-  //         name: user.name,
-  //       })
-  //       console.log(user)
-  //     })
-  // }
 
   userInfo = async () => {
     const user = await this.props.currentUser();
@@ -48,6 +42,9 @@ class FillProfile extends Component {
       location: user.location,
       age: user.age,
       gender: user.gender,
+      nativeLanguage: user.nativeLanguage,
+      spokenLanguages: user.spokenLanguages,
+      learningLanguages: user.learningLanguages
     })
     return user;
   }
@@ -56,11 +53,10 @@ class FillProfile extends Component {
     this.setState({
       [key]: value
     })
-
   }
 
   toggle = e => {
-    this.save(2);
+    this.save(false);
     this.setState(state => ({
       index: state.index === 1 ? 0 : state.index + 1,
     }))
@@ -80,24 +76,21 @@ class FillProfile extends Component {
   }
 
   save = (end) => {
-    let { name, profileImage, location, age, gender, langLearnLevel, langLevel } = this.state;
+    let { name, profileImage, location, age, gender, langLearnLevel, langLevel, nativeLanguage, spokenLanguages, learningLanguages } = this.state;
     age = new Date(age);
-    let nativeLanguage = [];
-    let spokenLanguages = [];
-    let learningLanguages = [];
-    langLevel.forEach(lang => { lang.level === 'native' ? nativeLanguage.push(lang.language) : spokenLanguages.push({ lang: lang.language, rate: lang.level }) });
+
+    langLevel.forEach(lang => { spokenLanguages.push({ lang: lang.language, rate: lang.level }) });
     langLearnLevel.forEach(lang => { learningLanguages.push({ lang: lang.language, rate: lang.level }) });
 
     const user = { name, profileImage, location, age, gender, nativeLanguage, spokenLanguages, learningLanguages };
-
-      this.props.updateUser(user)
-        .then(() => {
-          if(end === 1) {
-            this.setState({
-              filled: true
-            })
-          }
-        })
+    this.props.updateUser(user)
+      .then(() => {
+        if (end) {
+          this.setState({
+            filled: true
+          })
+        }
+      })
 
   }
 
@@ -127,7 +120,7 @@ class FillProfile extends Component {
           </Transition>
 
         </div>
-        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? this.save(true) : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
+        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? () => { this.save(true) } : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
         {this.state.index === 1 ? null : <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>}
       </div>
     )
