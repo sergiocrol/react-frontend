@@ -148,7 +148,12 @@ class ImageEasy extends Component {
     const { imageOneUrl, imageTwoUrl, imageThreeUrl, imageFourUrl, answerOne, answerTwo, answerThree, answerFour } = this.state;
     const type = 'imageEasy';
     const pillId = this.props.props.match.params.id;
-    const images = [{ imageUrl: imageOneUrl.props.src, answer: answerOne.trim() }, { imageUrl: imageTwoUrl.props.src, answer: answerTwo.trim() }, { imageUrl: imageThreeUrl.props.src, answer: answerThree.trim() }, { imageUrl: imageFourUrl.props.src, answer: answerFour.trim() }]
+    const images = [
+      { imageUrl: imageOneUrl.props.src, answer: answerOne.trim().toLowerCase() },
+      { imageUrl: imageTwoUrl.props.src, answer: answerTwo.trim().toLowerCase() },
+      { imageUrl: imageThreeUrl.props.src, answer: answerThree.trim().toLowerCase() },
+      { imageUrl: imageFourUrl.props.src, answer: answerFour.trim().toLowerCase() }
+    ]
     const card = { type, pillId, images };
     pillService.newCard(card)
       .then(card => {
