@@ -49,9 +49,9 @@ class AuthProvider extends Component {
 
   userGet = () => {
     return authService.currentUser()
-    .then((user) => {
-      return user
-    })
+      .then((user) => {
+        return user
+      })
   }
 
   componentDidMount() {

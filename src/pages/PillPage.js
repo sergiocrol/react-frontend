@@ -46,7 +46,7 @@ class PillPage extends Component {
           <h1>{name}</h1>
           <p className="container-content-language u-margin-top-small"><span>{fromLanguage}</span> &#8651; <span>{toLanguage}</span></p>
           <div className="container-content-description u-margin-top-medium">
-            {rate !== undefined ? <span className="rate-box">{rate / reviewers}</span> : null}
+            {rate !== undefined ? <span className="rate-box">{(rate / reviewers).toFixed(1)}</span> : null}
             <p>{description}</p>
           </div>
           <div className="pill-author"> <span>author: {author} </span><span>nº taken: {numberTaken} </span></div>

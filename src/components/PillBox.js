@@ -13,7 +13,9 @@ const PillBox = (props) => {
   }
 
   const rate = () => {
-    return user.rate / user.reviewers;
+    const rate = (user.rate / user.reviewers).toFixed(1);
+    if (rate == 0) { return 1 }
+    return rate.toString().split('.')[1] === '0' ? rate.toString().split('.')[0] : rate;
   }
 
   return (
