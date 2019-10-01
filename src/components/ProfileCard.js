@@ -3,7 +3,7 @@ import cloudImage from '../images/cloud.svg';
 
 import location from '../images/location.svg';
 import cake from '../images/cake.svg';
-import profile from '../images/profile.svg';
+import profile from '../images/profile2.svg';
 import firebase from "firebase";
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 const gender = require('../helpers/gender');

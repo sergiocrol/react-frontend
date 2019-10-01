@@ -6,10 +6,17 @@
   background: linear-gradient(to top, $color-orange-two, $color-coral-two);
   padding-left: 3rem;
   padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
     font-size: 4rem;
   }
+}
+
+.login-textbox {
+  padding: 2rem 8rem;
 }
 
 .logo-bar {
@@ -39,4 +46,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+img {
+  width: 15rem;
 }
