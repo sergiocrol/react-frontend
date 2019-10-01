@@ -1,6 +1,12 @@
-# Quick Compo
+# Hitza App
 
 <br>
+
+## Demo
+
+You can visit here the [deployed app](https://hitza-97861.firebaseapp.com) <br>
+
+I'm currently improving and updating it (it's mobile adapted, but not totally desktop adapted yet).
 
 ## Description
 
