@@ -3,13 +3,12 @@
   color: black;
   height: 10rem;
   border: 1px solid lightgray;
-  margin-bottom: .7rem;
   box-shadow: -1px 6px 9px -2px rgba(168,168,168,1);
   transition: all .2s linear;
   border-left: 1.5rem solid $color-coral-two;
   padding: 2px 7px;
-  max-width: 500px;
   margin: 0 auto;
+  margin-bottom: 1rem;
 
   &:hover {
     transform: translateX(1rem);

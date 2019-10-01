@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
+import Navbar from '../components/Navbar.js';
+import Header from '../components/Header.jsx';
 import withAuth from '../components/withAuth.js';
 import ProfileCard from '../components/ProfileCard';
 import ProfileCardLang from '../components/ProfileCardLang.js';
@@ -99,30 +102,39 @@ class FillProfile extends Component {
     if (this.state.filled) { return <Redirect to="/home" /> };
     const name = this.state.name;
     return (
-      <div className="container profile-creation">
-        <div className="profile-container">
-          <div className="profile-creation-textbox">
-            <h1>Welcome {name}</h1>
-            <p>tell us about you :)</p>
-            <span className="triangle"></span>
+      <div>
+        <Header />
+        <div className="container-profile">
+          <div className="container profile-creation">
+            <div className="profile-container">
+              <div className="profile-creation-textbox">
+                {this.state.index === 1 ? null : <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>}
+                <h1>Welcome {name}</h1>
+                <p>tell us about you :)</p>
+                <span className="triangle"></span>
+              </div>
+
+              <Transition
+                native
+                reset
+                unique
+                config={{ duration: 2000 }}
+                items={this.state.index}
+                initial={{ opacity: 1, transform: 'translate3d(0%,0,0)' }}
+                from={{ opacity: 0, transform: 'translate3d(0%,0,0)' }}
+                enter={{ opacity: 1, transform: 'translate3d(0%,0,0)' }}
+                leave={{ opacity: 0, display: 'none', transform: 'translate3d(-50%,0,0)' }}>
+                {index => this.pages[index]}
+              </Transition>
+
+            </div>
+            {this.state.index === 1 ? <a href="#0" className="back-button" onClick={this.toggle}>&#8249;&nbsp;back</a> : null}
+            <a href="#0" className="btn-text" onClick={this.state.index === 1 ? () => { this.save(true) } : this.toggle}>
+              {this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;
+            </a>
           </div>
-
-          <Transition
-            native
-            reset
-            unique
-            config={{ duration: 2000 }}
-            items={this.state.index}
-            initial={{ opacity: 1, transform: 'translate3d(0%,0,0)' }}
-            from={{ opacity: 0, transform: 'translate3d(0%,0,0)' }}
-            enter={{ opacity: 1, transform: 'translate3d(0%,0,0)' }}
-            leave={{ opacity: 0, display: 'none', transform: 'translate3d(-50%,0,0)' }}>
-            {index => this.pages[index]}
-          </Transition>
-
         </div>
-        <a href="#0" className="btn-text" onClick={this.state.index === 1 ? () => { this.save(true) } : this.toggle}>{this.state.index === 1 ? 'FINISH' : 'NEXT'}&rarr;</a>
-        {this.state.index === 1 ? null : <a className="logout-button" href="#0" onClick={this.handleLogout}><img src={logout} alt="logout" /></a>}
+        <Navbar />
       </div>
     )
   }

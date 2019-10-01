@@ -54,7 +54,6 @@ class PillPlay extends Component {
 
   updateScore = (score) => {
     const newScore = this.state.score + score;
-
     this.setState({
       score: newScore
     })
@@ -62,16 +61,13 @@ class PillPlay extends Component {
 
   finish = () => {
     userService.updateScore(this.state.score, this.props.match.params.id)
-      .then(user => {
-
-      })
+      .then(user => { })
     pillService.countTaken(this.props.match.params.id)
       .then(pill => {
-
+        this.setState({
+          redirect: true
+        })
       })
-    this.setState({
-      redirect: true
-    })
   }
 
   componentDidMount() {
@@ -145,7 +141,7 @@ class PillPlay extends Component {
     return (
       <div>
         <Header />
-        <div className="dashboard-container card-container u-padding-top-big">
+        <div className="dashboard-container second-dashboard card-container u-padding-top-big">
           <Transition
             native
             reset

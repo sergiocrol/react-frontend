@@ -1,6 +1,6 @@
 .home-search-container {
   width: 100vw;
-  height: 30vh;
+  height: 18rem;
   background: $color-orange-two; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, $color-orange-two, $color-coral-two);
@@ -104,7 +104,8 @@
 
 .search-body {
   width: 100vw;
-  height: 70vh;
+  // height: 70vh;
+  height: calc(100% - 23rem);
   background-color: white;
   display: flex;
   justify-content: center;

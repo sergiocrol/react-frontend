@@ -28,7 +28,6 @@ class PillCreate extends Component {
     this.setState(state => ({
       index: state.index + 1
     }));
-    console.log(this.state.index)
   }
 
   finishPill = () => {
@@ -113,7 +112,7 @@ class PillCreate extends Component {
     return (
       <div>
         <Header />
-        <div className="dashboard-container card-container u-padding-top-big">
+        <div className="dashboard-container second-dashboard card-container u-padding-top-big">
           <Transition
             native
             reset

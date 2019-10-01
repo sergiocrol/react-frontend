@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import PillBox from '../components/PillBox.js';
+import UserBox from '../components/UserBox.js';
 import withAuth from '../components/withAuth.js';
+import User from '../services/user-service.js';
 import Navbar from '../components/Navbar.js';
 import Header from '../components/Header.jsx';
 import auth from '../images/auth.svg';
@@ -13,7 +16,6 @@ import taken2 from '../images/taken2.svg';
 import score2 from '../images/stacs2.svg';
 import empty from '../images/empty.svg';
 import emptycourse from '../images/emptycourse.svg';
-import emptyscore from '../images/emptyscore.svg';
 import add from '../images/addpill.svg';
 
 class Dashboard extends Component {
@@ -21,7 +23,9 @@ class Dashboard extends Component {
     createdVisible: true,
     takenVisible: false,
     scoreVisible: false,
-    user: {}
+    user: {},
+    users: [],
+    position: 0
   }
 
   componentDidMount() {
@@ -30,6 +34,13 @@ class Dashboard extends Component {
         this.setState({
           user: user
         })
+      })
+
+    User.getAllUsers()
+      .then(users => {
+        this.setState({
+          users
+        }, () => this.position())
       })
   }
 
@@ -59,22 +70,13 @@ class Dashboard extends Component {
     }
   }
 
-  pillsContent = () => {
-    if (this.state.user.createdPills !== undefined && Object.keys(this.state.user.createdPills).length > 0) {
-      const el = this.state.user.createdPills.map(el => {
-        return el.name;
-      })
-      return el;
-    }
-  }
+  position = () => {
+    const { users } = this.state;
+    const position = users.map(user => user._id).indexOf(this.props.user._id);
 
-  takenPills = () => {
-    if (this.state.user.takenPills !== undefined && Object.keys(this.state.user.takenPills).length > 0) {
-      const el = this.state.user.takenPills.map(el => {
-        return el.name;
-      })
-      return el;
-    }
+    this.setState({
+      position: position + 1
+    })
   }
 
   render() {
@@ -87,7 +89,8 @@ class Dashboard extends Component {
     const createdImage = this.state.createdVisible ? created : created2;
     const takenImage = this.state.takenVisible ? taken : taken2;
     const scoreImage = this.state.scoreVisible ? score : score2;
-    const user = this.state.user;
+    const { user, position, users } = this.state;
+
     return (
       <div>
         <Header />
@@ -117,7 +120,6 @@ class Dashboard extends Component {
                       </section>
                     )}
                   {user.takenPills !== undefined && Object.keys(user.takenPills).length > 0 ? (
-
                     <section className={`pills-container ${takenVisible}`}>
                       <Link className="new-pill-float-button" to='/pills/new'>+</Link>
                       {user.takenPills.map((el, i) => {
@@ -132,10 +134,22 @@ class Dashboard extends Component {
                       </section>
                     )}
                   <section className={`dashboard-content-container-score ${scoreVisible}`}>
-                    <h2 className="u-margin-top-small">empty</h2>
-                    <img src={emptyscore} alt="no data" className="u-margin-top-big u-margin-bottom-big" />
-                    <Link to="/home" className="u-margin-top-big" ><img src={add} alt="created pill" /> explore</Link>
+                    <header className="u-margin-top-small">
+                      <h2>Your score is</h2>
+                      <div>{user.score}</div>
+                      <h3>you are in position <span>#{position}</span></h3>
+                    </header>
+                    <section>
+                      {
+                        users.length === 0 ? <h3>Loading...</h3> : (
+                          users.map((user, i) => {
+                            return <UserBox key={user._id} user={user} position={i + 1} />
+                          })
+                        )
+                      }
+                    </section>
                   </section>
+                  }
                 </div>
               </div>
             ) : (

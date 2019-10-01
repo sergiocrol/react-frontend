@@ -1,4 +1,4 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import withAuth from '../components/withAuth.js';
 import Navbar from '../components/Navbar.js';
@@ -10,8 +10,18 @@ class PillResult extends Component {
   state = {
     pill: {},
     score: 0,
-    rate: 0,
+    rate: 2,
     redirect: false
+  }
+
+  componentDidMount() {
+    this.props.currentUser()
+      .then(user => {
+        const score = user.takenPills[user.takenPills.length - 1].score;
+        this.setState({
+          score
+        })
+      })
   }
 
   handleChange = (event) => {

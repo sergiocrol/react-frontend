@@ -13,15 +13,15 @@ class ImageCardSolution extends Component {
   componentDidMount() {
     let score = 0;
     this.setState({
-      answerOne: this.props.answers[0],
-      answerTwo: this.props.answers[1],
-      answerThree: this.props.answers[2],
-      answerFour: this.props.answers[3],
+      answerOne: this.props.answers[0].toLowerCase(),
+      answerTwo: this.props.answers[1].toLowerCase(),
+      answerThree: this.props.answers[2].toLowerCase(),
+      answerFour: this.props.answers[3].toLowerCase(),
     })
-    if (this.props.answers[0] === this.props.content[0].answer[0]) { score += 10 }
-    if (this.props.answers[1] === this.props.content[1].answer[0]) { score += 10 }
-    if (this.props.answers[2] === this.props.content[2].answer[0]) { score += 10 }
-    if (this.props.answers[3] === this.props.content[3].answer[0]) { score += 10 }
+    if (this.props.answers[0].toLowerCase() === this.props.content[0].answer[0]) { score += 10 }
+    if (this.props.answers[1].toLowerCase() === this.props.content[1].answer[0]) { score += 10 }
+    if (this.props.answers[2].toLowerCase() === this.props.content[2].answer[0]) { score += 10 }
+    if (this.props.answers[3].toLowerCase() === this.props.content[3].answer[0]) { score += 10 }
     this.setState({
       score: score
     })
@@ -69,22 +69,22 @@ class ImageCardSolution extends Component {
         <div className="images-card-container">
           <div>
             <div className="images-card-image-container"> <img src={images[0].imageUrl} alt="one" /> </div>
-            {answerOne === correctOne ? null : <label className="correct-answer">{correctOne}</label>}
+            {answerOne === correctOne ? null : <label className="correct-answer">{correctOne.toUpperCase()}</label>}
             <label className={`images-card-answer-label ${classOne}`}>{answerOne}</label>
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[1].imageUrl} alt="two" /> </div>
-            {answerTwo === correctTwo ? null : <label className="correct-answer">{correctTwo}</label>}
+            {answerTwo === correctTwo ? null : <label className="correct-answer">{correctTwo.toUpperCase()}</label>}
             <label className={`images-card-answer-label ${classTwo}`}>{answerTwo} </label>
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[2].imageUrl} alt="three" /> </div>
-            {answerThree === correctThree ? null : <label className="correct-answer">{correctThree}</label>}
+            {answerThree === correctThree ? null : <label className="correct-answer">{correctThree.toUpperCase()}</label>}
             <label className={`images-card-answer-label ${classThree}`}> {answerThree} </label>
           </div>
           <div>
             <div className="images-card-image-container"> <img src={images[3].imageUrl} alt="four" /> </div>
-            {answerFour === correctFour ? null : <label className="correct-answer">{correctFour}</label>}
+            {answerFour === correctFour ? null : <label className="correct-answer">{correctFour.toUpperCase()}</label>}
             <label className={`images-card-answer-label ${classFour}`}> {answerFour}</label>
           </div>
         </div>

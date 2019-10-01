@@ -73,7 +73,9 @@
   background: $color-orange-two; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, $color-orange-two, $color-coral-two);
-  height: 100vh;
+  height: calc(100% - 10.5rem);
+  position: absolute;
+  top: 5.5rem;
 }
 
 .profile-container {
@@ -215,22 +217,22 @@
     }
 
 .logout-button {
-  position: fixed;
-  top: 17rem;
-  right: 8.5rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  position: absolute;
+  top: -1.6rem;
+  right: -1.6rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 100px;
   background-color: rgba(255, 255, 255, 0.815);
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 4rem;
+  font-size: 3.8rem;
   font-weight: 700;
-  //box-shadow: 10px 10px 10px -6px rgba(128,128,128,1);
   text-decoration: none;
   cursor: pointer;
+  z-index: 100;
 
   img{
     width: 3rem;
@@ -240,4 +242,23 @@
 .language-label {
   display: inline-block;
   overflow: hidden;
+}
+
+.container-profile {
+  height: 100vh;
+  background: $color-orange-two; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, $color-orange-two, $color-coral-two); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, $color-orange-two, $color-coral-two);
+}
+
+.back-button {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0.7rem;
+  text-decoration: none;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.767);
+  color: $color-grey-dark;
+  border-radius: 2rem;
+  padding: 0 1rem;
 }

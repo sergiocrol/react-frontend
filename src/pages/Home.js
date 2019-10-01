@@ -114,7 +114,7 @@ class Home extends Component {
               <div className="results">
                 <p className="result-title">recomended</p>
                 {suggestedPills.map((el, i) => {
-                  return <Link key={i} style={{ textDecoration: 'none' }} to={`/pills/${el._id}`}><PillBox user={el} /></Link>
+                  return <Link key={i} style={{ textDecoration: 'none' }} to={el.author === this.props.user._id ? '/dashboard' : `/pills/${el._id}`}><PillBox user={el} /></Link>
                 })}
               </div>
             </div>

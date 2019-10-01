@@ -13,6 +13,16 @@ class UserService {
       .then(({ data }) => data);
   }
 
+  getAllUsers() {
+    return this.user.get('/user/users')
+      .then(({ data }) => data);
+  }
+
+  getOneUser(id) {
+    return this.user.get('/user/user/' + id)
+      .then(({ data }) => data);
+  }
+
 }
 
 const userService = new UserService();

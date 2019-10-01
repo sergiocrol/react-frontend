@@ -82,14 +82,14 @@ class PillNew extends Component {
     return (
       <div>
         <Header />
-        <div className="dashboard-container u-padding-top-big">
+        <div className="dashboard-container second-dashboard u-padding-top-big">
           <div className="pill-creation-container">
             <div className="profile-creation-textbox">
               <p className="profile-creation-textbox-text u-center-text">Let's create a new Pill! :D</p>
               <p className="profile-creation-textbox-text u-center-text">Tell the student what they will learn</p>
               <span className="triangle"></span>
             </div>
-            <div className="language-selector-container">
+            <div className="language-selector-container u-margin-bottom-small">
               <select className="selector search-box-selector select-new" name="fromLanguage" id="fromLanguage" value={fromLanguage} onChange={this.handleChange}>
                 {
                   this.langArray().map((lang, i) => { return <option key={i}>{lang}</option> })
@@ -103,11 +103,11 @@ class PillNew extends Component {
               </select>
             </div>
             <p className="pill-creation-name">name</p>
-            <input className="pill-creation-name-input" type="text" name="name" value={name} onChange={this.handleChange} />
+            <input className="pill-creation-name-input u-margin-bottom-small" type="text" name="name" value={name} onChange={this.handleChange} />
             <p className="pill-creation-name">description</p>
-            <textarea className="textarea pill-creation-textarea" rows="1" name="description" value={description} onChange={this.handleChange} placeholder="Write here a small description about your pill"></textarea>
+            <textarea className="textarea pill-creation-textarea u-margin-bottom-small" rows="1" name="description" value={description} onChange={this.handleChange} placeholder="Write here a small description about your pill"></textarea>
             <p className="pill-creation-name">level</p>
-            <div className="rating">
+            <div className="rating  u-margin-bottom-small">
               <input type="radio" name="difficulty" value={5} id="5" onChange={this.handleChange} /><label htmlFor="5">◯</label>
               <input type="radio" name="difficulty" value={4} id="4" onChange={this.handleChange} /><label htmlFor="4">◯</label>
               <input type="radio" name="difficulty" value={3} id="3" onClick={this.handleChange} /><label htmlFor="3">◯</label>
@@ -116,7 +116,7 @@ class PillNew extends Component {
             </div>
             <p className="pill-creation-name">You are going to teach:</p>
             <input className="pill-creation-name-input" type="text" name="topic" value={topic} onChange={this.handleChange} onKeyDown={this.addTopic} placeholder="write a topic: colors, phrasal verbs..." />
-            <div className="topics-container">
+            <div className="topics-container u-margin-bottom-small">
               {
                 topicsArray
               }
